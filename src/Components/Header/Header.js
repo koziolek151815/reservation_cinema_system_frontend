@@ -30,7 +30,7 @@ class Header extends React.Component  {
     {
         return (
             <Navbar bg="dark" expand="lg" variant="dark">
-                <Navbar.Brand href="home">Meetup</Navbar.Brand>
+                <Navbar.Brand href="home">Cinema</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -44,7 +44,7 @@ class Header extends React.Component  {
                         }
                     </Nav>
 
-                    <Nav className="ml-auto">
+                    <Nav>
                         {
                             isLoggedIn() ?
                                 <Button onClick={logout}>Logout</Button> :

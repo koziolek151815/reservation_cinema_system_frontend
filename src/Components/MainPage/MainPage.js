@@ -1,26 +1,28 @@
 import React from "react";
 import {Button, Container, Row, Col} from "react-bootstrap";
 import axios from "axios";
+import Screening from "../ScreeningComponent/Screening";
 
 
 
 class MainPage extends React.Component{
     state = {
-        userCount: "?"
+        screenings: []
     }
 
-    updateCount() {
+    getScreenings() {
         axios.get(
-            process.env.REACT_APP_BACKEND_URL + `/chat/userCount`,
+            process.env.REACT_APP_BACKEND_URL + `/screenings`,{ headers: {"Authorization" : `Bearer ${this.token}`}}
         ).then((response)=>{
-            this.setState({userCount: response.data.toString()})
-            setTimeout(this.updateCount.bind(this), 1000);
+            console.log(response);
+            this.setState({screenings: response.data})
         });
 
     }
 
     componentDidMount() {
-        this.updateCount()
+        this.token = localStorage.getItem('token');
+        this.getScreenings();
     }
 
 
@@ -29,16 +31,11 @@ class MainPage extends React.Component{
             <div>
                 <Container className="my-1 pb-3">
                     <Row className="p-1">
-                        <Col xs={12} md={6} className="p-1">
-                            <h2>Welcome to our website!</h2>
-                            Currently {this.state.userCount} people are chatting. <br/>
-                            Press this button to talk to a random stranger.
-                            <Button variant="primary" size="lg" block href="/chat">
-                                Chat with a stranger!
-                            </Button>
-                        </Col>
-                        <Col xs={12} md={6} className="p-1">
-                            <h2>User ads:</h2>
+                        <Col xs={12} md={12} className="p-1">
+                            <h2>Screenings</h2>
+                            {this.state.screenings.map(screening =>
+                                <Screening screening = {screening} key={screening.screeningId} />
+                            )}
                         </Col>
                     </Row>
                 </Container>
