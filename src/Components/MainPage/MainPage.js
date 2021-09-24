@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import pl from 'date-fns/locale/pl';
+import {withRouter} from "react-router-dom";
 registerLocale('pl', pl)
 
 class MainPage extends React.Component {
@@ -55,4 +56,4 @@ class MainPage extends React.Component {
     }
 }
 
-export default MainPage;
+export default withRouter(MainPage);

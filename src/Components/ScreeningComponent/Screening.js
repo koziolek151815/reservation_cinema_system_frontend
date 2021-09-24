@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios, * as others from 'axios';
 import {formatDate} from "../../Utility/Date";
 import {Col} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Button from "react-bootstrap/cjs/Button";
 
 
@@ -17,8 +17,9 @@ function Screening(props) {
                 {props.screening.screenings.map(screening =>
                     <div>
                         <p> {formatDate(screening.startScreening)}</p>
-                        <a className="btn btn-default bg-success"
-                           href={`/screening/${screening.screeningId}`}>Zarezerwuj bilet</a>
+                        {/*<a className="btn btn-default bg-success"*/}
+                        {/*   href={`/screening/${screening.screeningId}`}>Zarezerwuj bilet</a>*/}
+                        <Button onClick={()=> props.history.push(`/screening/${screening.screeningId}`)}>Zarezerwuj bilet</Button>
                     </div>
                 )}
             </div>
@@ -26,4 +27,4 @@ function Screening(props) {
     );
 }
 
-export default Screening;
+export default withRouter(Screening);
