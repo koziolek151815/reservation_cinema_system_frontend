@@ -4,6 +4,9 @@ import axios from "axios";
 import Screening from "../ScreeningComponent/Screening";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import pl from 'date-fns/locale/pl';
+registerLocale('pl', pl)
 
 class MainPage extends React.Component {
     state = {
@@ -32,7 +35,7 @@ class MainPage extends React.Component {
                 <Container className="my-1 pb-3">
                     <Row className="p-1">
                         <Col xs={12} md={12} className="p-1">
-                            <DatePicker selected={this.state.startDate}
+                            <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
                                         onChange={(date) => this.setState({startDate: date})}/>
                             <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj wybranego dnia</Button>
                             <h2>Seanse</h2>
