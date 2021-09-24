@@ -36,6 +36,8 @@ function App() {
             <Route path="/home">
               <MainPage/>
             </Route>
+            <Route path="/screening/:id">
+            </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
         </div>

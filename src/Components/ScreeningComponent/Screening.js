@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios, * as others from 'axios';
 import {formatDate} from "../../Utility/Date";
-
+import {Col} from "react-bootstrap";
 
 
 function Screening(props) {
@@ -9,14 +9,12 @@ function Screening(props) {
     return (
         <div className="Screening">
             <div>
-                <p> {props.screening.movieResponseDto.title}</p>
-                <br/>
-                <p> {formatDate(props.screening.startScreening)}</p>
-                <br/>
-                <p> {formatDate(props.screening.endScreening)}</p>
-                <br/>
+                <p> {props.screening.movie.title}</p>
+                {props.screening.screenings.map(screening =>
+                    <p> {formatDate(screening.startScreening)}</p>
+                )}
                 <button>
-                    Book ticket for screening
+                    Zarezerwuj bilet
                 </button>
             </div>
         </div>

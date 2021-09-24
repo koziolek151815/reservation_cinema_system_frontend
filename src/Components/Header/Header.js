@@ -30,16 +30,15 @@ class Header extends React.Component  {
     {
         return (
             <Navbar bg="dark" expand="lg" variant="dark">
-                <Navbar.Brand href="home">Cinema</Navbar.Brand>
+                <Navbar.Brand href="home">Kino</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="/chat">Chat</Nav.Link>
+                        <Nav.Link href="/home">Strona główna</Nav.Link>
 
                         {
                             isLoggedIn() ?
-                                <Nav.Link href="/addAd">New ad</Nav.Link> :
+                                <Nav.Link href="/addAd">Moje rezerwacje</Nav.Link> :
                                 null
                         }
                     </Nav>
@@ -47,8 +46,8 @@ class Header extends React.Component  {
                     <Nav>
                         {
                             isLoggedIn() ?
-                                <Button onClick={logout}>Logout</Button> :
-                                <Nav.Link href="/login">Login</Nav.Link>
+                                <Button onClick={logout}>Wyloguj</Button> :
+                                <Nav.Link href="/login">Zaloguj</Nav.Link>
                         }
 
                     </Nav>
