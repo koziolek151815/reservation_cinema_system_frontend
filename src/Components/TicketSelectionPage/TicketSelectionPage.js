@@ -51,12 +51,14 @@ function TicketSelectionPage(props) {
         setRows(Array.from({length: rows}, (_, i) => i + 1));
     }
 
+    const checkIfTaken = (bookedTickets, num, row) =>{
+        return bookedTickets.some(bookedTicket => bookedTicket.row === row && bookedTicket.number === num);
+    }
 
     return (
         <div className="m-auto">
-
             {rows.map((row, index) =>
-                <Seat num={numbers} ind ={index}/>
+                <Seat num={numbers} ind ={index} checkIfTaken ={checkIfTaken} bookedTickets={bookedTickets}/>
             )}
         </div>
     );
