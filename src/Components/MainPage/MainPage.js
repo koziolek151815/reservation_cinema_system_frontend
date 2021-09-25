@@ -41,7 +41,7 @@ class MainPage extends React.Component {
                             <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj wybranego dnia</Button>
                             <h2>Seanse</h2>
                             {this.state.screenings.map(screening =>
-                                <Screening screening={screening} key={screening.screeningId}/>
+                                <Screening screening={screening} key={screening.movie.movieId}/>
                             )}
                         </Col>
                     </Row>
