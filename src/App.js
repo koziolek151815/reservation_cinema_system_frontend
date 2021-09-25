@@ -14,6 +14,7 @@ import React, {useState} from "react";
 import Header from "./Components/Header/Header";
 import PrivateRoute from "./Components/PrivateRoute";
 import MainPage from "./Components/MainPage/MainPage";
+import TicketSelectionPage from "./Components/TicketSelectionPage/TicketSelectionPage";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <MainPage/>
             </Route>
             <Route path="/screening/:id">
+              <TicketSelectionPage/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
