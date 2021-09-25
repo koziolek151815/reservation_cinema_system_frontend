@@ -4,12 +4,19 @@ import {formatDate} from "../../Utility/Date";
 import {Col} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
 import Button from "react-bootstrap/cjs/Button";
+import Screening from "../ScreeningComponent/Screening";
+import Seat from "./Seats";
 
 
 function TicketSelectionPage(props) {
-    const [screeningData, setScreeningData] = useState({});
+    const [screeningData, setScreeningData] = useState({
+        "screening": {},
+        "auditorium": {}
+    });
     const [bookedTickets, setBookedTickets] = useState([]);
     const [ticketTypes, setTicketTypes] = useState([])
+    const [numbers, setNumbers] = useState([]);
+    const [rows, setRows] = useState([]);
     useEffect(() => {
         const fetchTicketTypes = async () => {
             const result = await axios(
@@ -31,13 +38,26 @@ function TicketSelectionPage(props) {
             );
             setScreeningData(result.data);
             console.log(result.data);
+            f(result.data.auditorium.numbers, result.data.auditorium.rows);
         };
         fetchTicketTypes();
         fetchBookedTickets();
         fetchScreeningData()
     }, []);
+
+
+    function f(numbers, rows){
+        setNumbers(Array.from({length: numbers}, (_, i) => i + 1));
+        setRows(Array.from({length: rows}, (_, i) => i + 1));
+    }
+
+
     return (
         <div className="m-auto">
+
+            {rows.map((row, index) =>
+                <Seat num={numbers} ind ={index}/>
+            )}
         </div>
     );
 }
