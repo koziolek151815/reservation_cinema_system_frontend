@@ -17,6 +17,8 @@ import MainPage from "./Components/MainPage/MainPage";
 import TicketSelectionPage from "./Components/TicketSelectionPage/TicketSelectionPage";
 import MoviesManagePage from "./Components/MoviesManagePage/MoviesManagePage";
 import AddMovie from "./Components/MoviesManagePage/AddMovie";
+import TicketTypesManagePage from "./Components/TicketTypesManagePage/TicketTypesManagePage";
+import AddTicketType from "./Components/TicketTypesManagePage/AddTicketType";
 
 
 function App() {
@@ -47,6 +49,12 @@ function App() {
             </Route>
             <Route path="/addMovie">
               <AddMovie/>
+            </Route>
+            <Route path="/ticketTypes">
+              <TicketTypesManagePage/>
+            </Route>
+            <Route path="/addTicketType">
+              <AddTicketType/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
