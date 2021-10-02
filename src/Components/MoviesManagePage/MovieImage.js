@@ -19,7 +19,7 @@ function MovieImage(props) {
     }, []);
     return (
         <div>
-            {image && <img className="mb-3" alt="post img" src={"data:image/jpeg;base64," + image}/>}
+            {image && <img style={{maxWidth: "300px"}} className="mb-3" alt="post img" src={"data:image/jpeg;base64," + image}/>}
         </div>
 
     );

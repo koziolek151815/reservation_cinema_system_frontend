@@ -16,6 +16,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import MainPage from "./Components/MainPage/MainPage";
 import TicketSelectionPage from "./Components/TicketSelectionPage/TicketSelectionPage";
 import MoviesManagePage from "./Components/MoviesManagePage/MoviesManagePage";
+import AddMovie from "./Components/MoviesManagePage/AddMovie";
 
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
             </Route>
             <Route path="/movies">
               <MoviesManagePage/>
+            </Route>
+            <Route path="/addMovie">
+              <AddMovie/>
             </Route>
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>

@@ -41,6 +41,7 @@ class MoviesList extends React.Component {
                     <div>
                         <p>Tytuł: {movie.title}</p>
                         <MovieImage movieId={movie.movieId} key={movie.movieId}/>
+                        <p>Reżyser: {movie.director}</p>
                         <p>Opis: {movie.description}</p>
                         <a className="btn btn-default bg-info"
                            href={`/updateMovie/${movie.movieId}`}>Edytuj</a>

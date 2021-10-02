@@ -1,7 +1,8 @@
 .App {
   text-align: center;
   display: flex;
-  height: 150vh;
+  height: 100vh;
   flex-direction: column;
   background-color: antiquewhite;
 }
+
