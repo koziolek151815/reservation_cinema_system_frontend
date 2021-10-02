@@ -4,9 +4,10 @@ import axios from "axios";
 import Screening from "../ScreeningComponent/Screening";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import {registerLocale, setDefaultLocale} from "react-datepicker";
 import pl from 'date-fns/locale/pl';
 import {withRouter} from "react-router-dom";
+
 registerLocale('pl', pl)
 
 class MainPage extends React.Component {
@@ -38,11 +39,12 @@ class MainPage extends React.Component {
                         <Col xs={12} md={12} className="p-1">
                             <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
                                         onChange={(date) => this.setState({startDate: date})}/>
-                            <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj wybranego dnia</Button>
+                            <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj wybranego
+                                dnia</Button>
                             <h2>Seanse</h2>
-                            {this.state.screenings.map(screening =>
+                            {this.state.screenings.length !== 0 ? this.state.screenings.map(screening =>
                                 <Screening screening={screening} key={screening.movie.movieId}/>
-                            )}
+                            ) : `Brak seansów na ten dzień`}
                         </Col>
                     </Row>
                 </Container>
