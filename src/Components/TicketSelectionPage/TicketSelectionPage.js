@@ -17,6 +17,7 @@ function TicketSelectionPage(props) {
     const [ticketTypes, setTicketTypes] = useState([])
     const [numbers, setNumbers] = useState([]);
     const [rows, setRows] = useState([]);
+    const [selectedSeat, setSelectedSeat] = useState({});
     useEffect(() => {
         const fetchTicketTypes = async () => {
             const result = await axios(
@@ -46,20 +47,41 @@ function TicketSelectionPage(props) {
     }, []);
 
 
-    function f(numbers, rows){
+    function f(numbers, rows) {
         setNumbers(Array.from({length: numbers}, (_, i) => i + 1));
         setRows(Array.from({length: rows}, (_, i) => i + 1));
     }
 
-    const checkIfTaken = (bookedTickets, num, row) =>{
+    const checkIfTaken = (bookedTickets, num, row) => {
         return bookedTickets.some(bookedTicket => bookedTicket.row === row && bookedTicket.number === num);
+    }
+
+    const checkIfTakenEarlier = (bookedTickets, num, row) => {
+        const ticket = bookedTickets.find(bookedTicket => bookedTicket.row === row && bookedTicket.number === num);
+        if (ticket === undefined) return false;
+        return !bookedTickets.find(bookedTicket => bookedTicket.row === row && bookedTicket.number === num).hasOwnProperty('addedByUser');
+    }
+
+    const selectSeat = (bookedTickets, num, row) => {
+        if (checkIfTakenEarlier(bookedTickets, num, row)) return;
+        if (!checkIfTaken(bookedTickets, num, row)) {
+            setSelectedSeat({'row': row, 'number': num});
+            setBookedTickets(oldArray => [...oldArray, {'row': row, 'number': num, 'addedByUser': true}]);
+            console.log(bookedTickets);
+        } else {
+            setSelectedSeat({});
+            setBookedTickets(bookedTickets.filter(bookedTicket => !(bookedTicket.row === row && bookedTicket.number === num)));
+        }
     }
 
     return (
         <div className="m-auto">
+            <h3>Wybierz swoje miejsce</h3>
             {rows.map((row, index) =>
-                <Seat num={numbers} ind ={index} checkIfTaken ={checkIfTaken} bookedTickets={bookedTickets}/>
+                <Seat num={numbers} ind={index} key={index} checkIfTaken={checkIfTaken} selectSeat={selectSeat}
+                      bookedTickets={bookedTickets}/>
             )}
+            {selectedSeat.row ? `Wybrałeś miejsce: rząd ${selectedSeat.row}, miejsce: ${selectedSeat.number}` : null}
         </div>
     );
 }
