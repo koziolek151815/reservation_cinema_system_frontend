@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios, * as others from 'axios';
 import {formatDate} from "../../Utility/Date";
 import {Col} from "react-bootstrap";
@@ -6,6 +6,7 @@ import {Link, withRouter} from "react-router-dom";
 import Button from "react-bootstrap/cjs/Button";
 import Screening from "../ScreeningComponent/Screening";
 import Seat from "./Seats";
+import Select from 'react-select'
 
 
 function TicketSelectionPage(props) {
@@ -18,6 +19,8 @@ function TicketSelectionPage(props) {
     const [numbers, setNumbers] = useState([]);
     const [rows, setRows] = useState([]);
     const [selectedSeat, setSelectedSeat] = useState({});
+    const [selectedTicketType, setSelectedTicketType] = useState(null);
+    const ticketTypeRef = useRef(null);
     useEffect(() => {
         const fetchTicketTypes = async () => {
             const result = await axios(
@@ -73,6 +76,8 @@ function TicketSelectionPage(props) {
             setBookedTickets(bookedTickets.filter(bookedTicket => !(bookedTicket.row === row && bookedTicket.number === num)));
         }
     }
+    const bookTicketRequest = (event) => {
+    }
 
     return (
         <div className="m-auto">
@@ -81,7 +86,13 @@ function TicketSelectionPage(props) {
                 <Seat num={numbers} ind={index} key={index} checkIfTaken={checkIfTaken} selectSeat={selectSeat}
                       bookedTickets={bookedTickets}/>
             )}
-            {selectedSeat.row ? `Wybrałeś miejsce: rząd ${selectedSeat.row}, miejsce: ${selectedSeat.number}` : null}
+            {selectedSeat.row ? <p>Wybrałeś miejsce: rząd {selectedSeat.row}, miejsce: {selectedSeat.number}</p> : null}
+            <select className="custom-select" ref={ticketTypeRef}>
+                {ticketTypes.map(ticketType =>
+                    <option key={ticketType.ticketTypeId} value={ticketType.ticketTypeId}>Bilet {ticketType.name}: {ticketType.price} zł</option>
+                )};
+            </select>
+            <button onClick={bookTicketRequest} className="btn btn-primary">Zarezerwuj bilet</button>
         </div>
     );
 }
