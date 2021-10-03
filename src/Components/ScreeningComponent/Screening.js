@@ -4,6 +4,7 @@ import {formatDate} from "../../Utility/Date";
 import {Col} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
 import Button from "react-bootstrap/cjs/Button";
+import {isAdmin} from "../../Utility/Authorization";
 
 
 function Screening(props) {
@@ -27,6 +28,7 @@ function Screening(props) {
                         <p className="p-1"> {formatDate(screening.startScreening).slice(1).slice(-5)}</p>
                         <Button onClick={() => props.history.push(`/screening/${screening.screeningId}`)}>Zarezerwuj
                             bilet</Button>
+                        {isAdmin() &&<Button onClick={() => props.history.push(`/screeningInfo/${screening.screeningId}`)}>Dane dotyczące seansu</Button>}
                     </div>
                 )}
             </div>

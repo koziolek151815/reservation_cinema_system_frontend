@@ -19,6 +19,9 @@ import MoviesManagePage from "./Components/MoviesManagePage/MoviesManagePage";
 import AddMovie from "./Components/MoviesManagePage/AddMovie";
 import TicketTypesManagePage from "./Components/TicketTypesManagePage/TicketTypesManagePage";
 import AddTicketType from "./Components/TicketTypesManagePage/AddTicketType";
+import AddScreening from "./Components/ScreeningManage/AddScreening";
+import AuditoriumsManagePage from "./Components/AuditoriumManage/AuditoriumsManagePage";
+import AddAuditorium from "./Components/AuditoriumManage/AddAuditorium";
 
 
 function App() {
@@ -56,6 +59,16 @@ function App() {
             <Route path="/addTicketType">
               <AddTicketType/>
             </Route>
+            <Route path="/addScreening">
+              <AddScreening/>
+            </Route>
+            <Route path="/auditoriums">
+              <AuditoriumsManagePage/>
+            </Route>
+            <Route path="/addAuditorium">
+              <AddAuditorium/>
+            </Route>
+
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
         </div>

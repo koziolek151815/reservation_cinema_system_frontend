@@ -23,11 +23,16 @@ export const isLoggedIn = ()=>{
 
 export const login = (token)=>{
     localStorage.setItem("token", token);
-    // console.log(localStorage.getItem("token"));
     const decoded = jwt(localStorage.getItem('token'));
-    // localStorage.setItem("roles", decoded['roles']);
-    // console.log(localStorage.getItem('roles'));
+    localStorage.setItem("roles", decoded['roles']);
     notify();
+}
+
+export const isAdmin = () =>{
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+    const decoded = jwt(token);
+    return decoded['roles'].includes("ROLE_admin");
 }
 
 export const logout = ()=>{
@@ -35,4 +40,7 @@ export const logout = ()=>{
     localStorage.removeItem('roles');
     window.location="/home";
     notify();
+}
+export const getToken = ()=>{
+    return localStorage.getItem('token');
 }
