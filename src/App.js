@@ -1,9 +1,9 @@
 import './App.css';
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route
+    BrowserRouter as Router,
+    Switch,
+    Route
 } from "react-router-dom";
 
 import RegistrationForm from "./Components/RegistrationForm/RegistrationForm";
@@ -25,55 +25,46 @@ import AddAuditorium from "./Components/AuditoriumManage/AddAuditorium";
 
 
 function App() {
-  const [errorMessage, updateErrorMessage] = useState(null);
+    const [errorMessage, updateErrorMessage] = useState(null);
 
-  return (
-      <Router>
-        <div className="App">
-          <Header/>
-          <Switch>
-            <Route path="/" exact={true}>
-              <RegistrationForm showError={updateErrorMessage}/>
-            </Route>
-            <Route path="/register">
-              <RegistrationForm showError={updateErrorMessage}/>
-            </Route>
-            <Route path="/login">
-              <LoginForm showError={updateErrorMessage}/>
-            </Route>
-            <Route path="/home">
-              <MainPage/>
-            </Route>
-            <Route path="/screening/:id">
-              <TicketSelectionPage/>
-            </Route>
-            <Route path="/movies">
-              <MoviesManagePage/>
-            </Route>
-            <Route path="/addMovie">
-              <AddMovie/>
-            </Route>
-            <Route path="/ticketTypes">
-              <TicketTypesManagePage/>
-            </Route>
-            <Route path="/addTicketType">
-              <AddTicketType/>
-            </Route>
-            <Route path="/addScreening">
-              <AddScreening/>
-            </Route>
-            <Route path="/auditoriums">
-              <AuditoriumsManagePage/>
-            </Route>
-            <Route path="/addAuditorium">
-              <AddAuditorium/>
-            </Route>
+    return (
+        <Router>
+            <div className="App">
+                <Header/>
+                <Switch>
+                    <Route path="/" exact={true}>
+                        <RegistrationForm showError={updateErrorMessage}/>
+                    </Route>
+                    <Route path="/register">
+                        <RegistrationForm showError={updateErrorMessage}/>
+                    </Route>
+                    <Route path="/login">
+                        <LoginForm showError={updateErrorMessage}/>
+                    </Route>
+                    <PrivateRoute path="/home" component={<MainPage/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/screening/:id" component={<TicketSelectionPage/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/movies" component={<MoviesManagePage/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/addMovie" component={<AddMovie/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/ticketTypes" component={<TicketTypesManagePage/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/addTicketType" component={<AddTicketType/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/addScreening" component={<AddScreening/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/auditoriums" component={<AuditoriumsManagePage/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/addAuditorium" component={<AddAuditorium/>}>
+                    </PrivateRoute>
 
-          </Switch>
-          <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
-        </div>
-      </Router>
-  );
+                </Switch>
+                <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
