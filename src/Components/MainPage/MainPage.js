@@ -39,7 +39,7 @@ class MainPage extends React.Component {
                     <Row className="p-1">
                         <Col xs={12} md={12} className="p-1">
                             {isAdmin() ?
-                                <Button onClick={() => this.history.push(`/addScreening`)}>Dodaj seans
+                                <Button onClick={() => this.props.history.push(`/addScreening`)}>Dodaj seans
                                 </Button> : null}
                             {isAdmin() ? <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
                                                      disabledKeyboardNavigation
