@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import axios, * as others from 'axios';
 import {formatDate} from "../../Utility/Date";
-import {Col} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
 import Button from "react-bootstrap/cjs/Button";
 import Screening from "../ScreeningComponent/Screening";
@@ -90,7 +90,8 @@ function TicketSelectionPage(props) {
     }
 
     return (
-        <div className="m-auto">
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div>
             <h3>Wybierz swoje miejsce</h3>
             {rows.map((row, index) =>
                 <Seat num={numbers} ind={index} key={index} checkIfTaken={checkIfTaken} selectSeat={selectSeat}
@@ -103,6 +104,7 @@ function TicketSelectionPage(props) {
                 )};
             </select>
             <button onClick={bookTicketRequest} className="btn btn-primary">Zarezerwuj bilet</button>
+            </div>
         </div>
     );
 }
