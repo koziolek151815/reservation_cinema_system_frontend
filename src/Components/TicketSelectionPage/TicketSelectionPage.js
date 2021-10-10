@@ -19,7 +19,6 @@ function TicketSelectionPage(props) {
     const [numbers, setNumbers] = useState([]);
     const [rows, setRows] = useState([]);
     const [selectedSeat, setSelectedSeat] = useState({});
-    const [selectedTicketType, setSelectedTicketType] = useState(null);
     const ticketTypeRef = useRef(null);
     useEffect(() => {
         const fetchTicketTypes = async () => {
@@ -76,7 +75,18 @@ function TicketSelectionPage(props) {
             setBookedTickets(bookedTickets.filter(bookedTicket => !(bookedTicket.row === row && bookedTicket.number === num)));
         }
     }
-    const bookTicketRequest = (event) => {
+    const bookTicketRequest = () => {
+
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/tickets/${props.match.params.id}`, {
+            auditoriumId: screeningData.auditorium.auditoriumId,
+            seatRow: selectedSeat.row,
+            seatNumber:selectedSeat.number,
+            ticketTypeId: ticketTypeRef.current.value
+        }, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}})
+            .then((response) => {
+                window.location.reload();
+            }, (error) => {
+            });
     }
 
     return (
