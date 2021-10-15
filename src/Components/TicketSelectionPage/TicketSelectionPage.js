@@ -136,7 +136,7 @@ function TicketSelectionPage(props) {
             ticketsList: prepareRequestBody()
         }, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}})
             .then((response) => {
-                window.location.reload();
+                props.history.push("/myReservationsHistory");
             }, (error) => {
             });
     }

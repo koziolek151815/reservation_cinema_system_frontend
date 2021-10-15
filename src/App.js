@@ -22,6 +22,7 @@ import AddTicketType from "./Components/TicketTypesManagePage/AddTicketType";
 import AddScreening from "./Components/ScreeningManage/AddScreening";
 import AuditoriumsManagePage from "./Components/AuditoriumManage/AuditoriumsManagePage";
 import AddAuditorium from "./Components/AuditoriumManage/AddAuditorium";
+import UserReservationHistoryPage from "./Components/UserReservationHistoryPage/UserReservationHistoryPage";
 
 
 function App() {
@@ -59,7 +60,8 @@ function App() {
                     </PrivateRoute>
                     <PrivateRoute path="/addAuditorium" component={<AddAuditorium/>}>
                     </PrivateRoute>
-
+                    <PrivateRoute path="/myReservationsHistory" component={<UserReservationHistoryPage/>}>
+                    </PrivateRoute>
                 </Switch>
                 <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
             </div>

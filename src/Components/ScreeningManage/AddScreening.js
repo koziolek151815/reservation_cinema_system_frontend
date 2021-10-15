@@ -75,7 +75,7 @@ class AddScreening extends React.Component {
             endScreening: added
         }, {headers: {"Authorization": `Bearer ${this.token}`}})
             .then((response) => {
-
+                this.getScreenings();
             }, (error) => {
             });
     }

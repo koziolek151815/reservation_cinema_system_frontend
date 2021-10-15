@@ -16,7 +16,7 @@ class TicketTypesList extends React.Component {
 
     getTicketTypesFromApi = async () => {
         return await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes`
+            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes`,
         );
     }
     fetchTicketTypes = () => {
