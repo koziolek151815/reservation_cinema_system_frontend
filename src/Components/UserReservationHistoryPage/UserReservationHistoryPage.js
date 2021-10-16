@@ -8,7 +8,6 @@ function UserReservationHistoryPage() {
         <div className="MainPage" style={{margin: "0 auto"}}>
             <h2>Historia rezerwacji</h2>
             <ReservationsHistoryTable/>
-
         </div>
     );
 }

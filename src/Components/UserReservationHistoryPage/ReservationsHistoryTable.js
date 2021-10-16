@@ -28,6 +28,18 @@ class ReservationsHistoryTable extends React.Component {
             });
         })
     };
+    cancelReservation = (id) => {
+        axios.delete(
+            `${process.env.REACT_APP_BACKEND_URL}/reservations/${id}`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
+        ).then((response) => {
+            this.fetchReservations();
+        }, (error) => {
+            this.setState({
+                error: true
+            })
+
+        });
+    }
 
 
     render() {
@@ -44,6 +56,7 @@ class ReservationsHistoryTable extends React.Component {
                             <th>Bilety</th>
                             <th>Cena</th>
                             <th>Opłacone</th>
+                            <th>Odwołanie</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,18 +66,19 @@ class ReservationsHistoryTable extends React.Component {
                                 <td>{reservation.movie}</td>
                                 <td>{formatDate(reservation.screeningDate)}</td>
                                 <td>{reservation.auditoriumName}</td>
-                                <td>{reservation.tickets.map((ticket) => <p>Rząd {ticket.row}, Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
+                                <td>{reservation.tickets.map((ticket) => <p>Rząd {ticket.row},
+                                    Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
                                 <td>{reservation.price}</td>
-                                <td>{reservation.paid === true?"Tak":"Nie"}</td>
+                                <td>{reservation.paid === true ? "Tak" : "Nie"}</td>
+                                <td>{reservation.paid === true ? "Odbyto" :
+                                    <button className="btn btn-default bg-danger"
+                                            onClick={() => this.cancelReservation(reservation.reservationId)}>Odwołaj
+                                    </button>}</td>
                             </tr>
                         ))}
                         </tbody>
                     </Table>)
-                    : <h5> No ticket types</h5>}
-                {this.state.error && <div className="error">
-                    <h4 id="err">Aby usunac typ biletu najpierw usuń bilety ją zawierajace</h4>
-                    <button id="errorButton" onClick={this.onErrorSubmit}>Ok</button>
-                </div>}
+                    : <h5> No reservations</h5>}
             </div>
         );
     }
