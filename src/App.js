@@ -23,6 +23,7 @@ import AddScreening from "./Components/ScreeningManage/AddScreening";
 import AuditoriumsManagePage from "./Components/AuditoriumManage/AuditoriumsManagePage";
 import AddAuditorium from "./Components/AuditoriumManage/AddAuditorium";
 import UserReservationHistoryPage from "./Components/UserReservationHistoryPage/UserReservationHistoryPage";
+import ReservationsForScreeningPage from "./Components/ReservationsForScreeningPage/ReservationsForScreeningPage";
 
 
 function App() {
@@ -61,6 +62,8 @@ function App() {
                     <PrivateRoute path="/addAuditorium" component={<AddAuditorium/>}>
                     </PrivateRoute>
                     <PrivateRoute path="/myReservationsHistory" component={<UserReservationHistoryPage/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/screeningInfo/:id" component={<ReservationsForScreeningPage/>}>
                     </PrivateRoute>
                 </Switch>
                 <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
