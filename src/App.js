@@ -24,6 +24,7 @@ import AuditoriumsManagePage from "./Components/AuditoriumManage/AuditoriumsMana
 import AddAuditorium from "./Components/AuditoriumManage/AddAuditorium";
 import UserReservationHistoryPage from "./Components/UserReservationHistoryPage/UserReservationHistoryPage";
 import ReservationsForScreeningPage from "./Components/ReservationsForScreeningPage/ReservationsForScreeningPage";
+import TicketSelectionPageWorker from "./Components/TicketSelectionPageWorker/TicketSelectionPageWorker";
 
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
                     <PrivateRoute path="/home" component={<MainPage/>}>
                     </PrivateRoute>
                     <PrivateRoute path="/screening/:id" component={<TicketSelectionPage/>}>
+                    </PrivateRoute>
+                    <PrivateRoute path="/screeningWorker/:id" component={<TicketSelectionPageWorker/>}>
                     </PrivateRoute>
                     <PrivateRoute path="/movies" component={<MoviesManagePage/>}>
                     </PrivateRoute>
