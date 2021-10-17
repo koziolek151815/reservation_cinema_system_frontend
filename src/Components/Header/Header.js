@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Navbar, Nav, Button} from "react-bootstrap";
-import {removeOnChangeLoginListener, addOnChangeLoginListener, isLoggedIn, logout} from "../../Utility/Authorization";
+import {
+    removeOnChangeLoginListener,
+    addOnChangeLoginListener,
+    isLoggedIn,
+    logout,
+    isAdmin
+} from "../../Utility/Authorization";
 
 class Header extends React.Component  {
     state = {
@@ -40,6 +46,19 @@ class Header extends React.Component  {
                             isLoggedIn() ?
                                 <Nav.Link href="/myReservationsHistory">Moje rezerwacje</Nav.Link> :
                                 null
+
+                        }
+                        {
+                            isLoggedIn() && isAdmin() ?
+                                <Nav.Link href="/addMovie">Dodaj film</Nav.Link> :
+                                null
+
+                        }
+                        {
+                            isLoggedIn() && isAdmin() ?
+                                <Nav.Link href="/addAuditorium">Dodaj salę kinową</Nav.Link> :
+                                null
+
                         }
                     </Nav>
 

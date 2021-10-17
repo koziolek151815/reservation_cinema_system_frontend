@@ -28,6 +28,18 @@ class ReservationsForScreeningTable extends React.Component {
             });
         })
     };
+
+    changeStatusOnPaid(reservationId) {
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/reservations/${reservationId}`, {
+        })
+            .then((response) => {
+                console.log(response);
+                this.fetchReservations();
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
     cancelReservation = (id) => {
         axios.delete(
             `${process.env.REACT_APP_BACKEND_URL}/reservations/${id}`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
@@ -71,8 +83,11 @@ class ReservationsForScreeningTable extends React.Component {
                                 <td>{reservation.tickets.map((ticket) => <p>Rząd {ticket.row},
                                     Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
                                 <td>{reservation.price}</td>
-                                <td>{reservation.paid === true ? "Tak" : "Nie"}</td>
-                                <td>{reservation.paid === true ? "Odbyto" :
+                                <td>{reservation.paid === true ? "Tak" :
+                                    <button className="btn btn-default bg-success"
+                                            onClick={() => this.changeStatusOnPaid(reservation.reservationId)}>Opłać
+                                    </button>}</td>
+                                <td>{reservation.paid === true ? "Niemożliwe" :
                                     <button className="btn btn-default bg-danger"
                                             onClick={() => this.cancelReservation(reservation.reservationId)}>Odwołaj
                                     </button>}</td>
@@ -84,6 +99,8 @@ class ReservationsForScreeningTable extends React.Component {
             </div>
         );
     }
+
+
 }
 
 export default ReservationsForScreeningTable;

@@ -65,8 +65,7 @@ class AddScreening extends React.Component {
         const minutes = this.startTimeRef.current.value.substring(3, 5);
         setStartScreening.setHours(hours);
         setStartScreening.setMinutes(minutes);
-        const movieTime = 143;
-        const added = new Date(setStartScreening.getTime() + movieTime * 60000);
+        const added = new Date(setStartScreening.getTime() + this.findMovieByMovieId().duration * 60000);
         this.setState({endScreeningMovie: added});
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/screenings`, {
             movieId: this.movieRef.current.value,
@@ -86,11 +85,14 @@ class AddScreening extends React.Component {
             const minutes = this.startTimeRef.current.value.substring(3, 5);
             setStartScreening.setHours(hours);
             setStartScreening.setMinutes(minutes);
-            const movieTime = 143;
-            const added = new Date(setStartScreening.getTime() + movieTime * 60000);
+            const added = new Date(setStartScreening.getTime() + this.findMovieByMovieId().duration * 60000);
             this.setState({endScreeningMovie: added});
             this.setState({validDate: true});
         }
+    }
+    findMovieByMovieId = () =>{
+        let movieId = Number(this.movieRef.current.value);
+        return this.state.movies.find(movie => movie.movieId === movieId);
     }
 
     render() {
