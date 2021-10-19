@@ -7,3 +7,8 @@ export const formatDate = (dateParam)=>{
     const minutes = ("0" + date.getMinutes()).slice(-2);
     return day +'.' + month +'.' + year + ' ' + hours +':' + minutes;
 }
+export const isInFuture = (dateParam) =>{
+    const dateNow = new Date();
+    const param = new Date(dateParam);;
+    return param> dateNow
+}

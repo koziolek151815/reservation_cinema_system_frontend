@@ -26,7 +26,7 @@ class MainPage extends React.Component {
         if (!this.state.startDate) return;
         const parameterDate = this.state.startDate.toISOString().split('T')[0];
         axios.get(
-            process.env.REACT_APP_BACKEND_URL + `/screenings?date=${parameterDate}`, {headers: {"Authorization": `Bearer ${this.token}`}}
+            process.env.REACT_APP_BACKEND_URL + `/screenings/list?date=${parameterDate}`
         ).then((response) => {
             this.setState({screenings: response.data})
         });
@@ -34,7 +34,7 @@ class MainPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{background: "antiquewhite"}}>
                 <Container className="my-1 pb-3">
                     <Row className="p-1">
                         <Col xs={12} md={12} className="p-1">

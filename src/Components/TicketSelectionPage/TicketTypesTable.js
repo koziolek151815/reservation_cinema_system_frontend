@@ -16,7 +16,7 @@ class TicketTypesTable extends React.Component {
 
     getTicketTypesFromApi = async () => {
         return await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes`
+            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
         );
     }
     fetchTicketTypes = () => {
@@ -29,7 +29,7 @@ class TicketTypesTable extends React.Component {
 
     deleteTicketType = (id) => {
         axios.delete(
-            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes/${id}`
+            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes/${id}`,{headers: {"Authorization": `Bearer ${this.token}`}}
         ).then((response) => {
             const filteredArray = this.state.ticketTypes.filter(ticketType => ticketType.ticketTypeId !== id)
             this.setState({ticketTypes: filteredArray});

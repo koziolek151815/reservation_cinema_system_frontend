@@ -31,7 +31,7 @@ class ReservationsForScreeningTable extends React.Component {
 
     changeStatusOnPaid(reservationId) {
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/reservations/${reservationId}`, {
-        })
+        }, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}})
             .then((response) => {
                 console.log(response);
                 this.fetchReservations();

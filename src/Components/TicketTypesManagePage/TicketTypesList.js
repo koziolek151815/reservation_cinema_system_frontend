@@ -29,7 +29,7 @@ class TicketTypesList extends React.Component {
 
     deleteTicketType = (id) => {
         axios.delete(
-            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes/${id}`
+            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes/${id}`,{headers: {"Authorization": `Bearer ${this.token}`}}
         ).then((response) => {
             const filteredArray = this.state.ticketTypes.filter(ticketType => ticketType.ticketTypeId !== id)
             this.setState({ticketTypes: filteredArray});

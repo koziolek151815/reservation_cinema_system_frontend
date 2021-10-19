@@ -15,7 +15,7 @@ class MoviesList extends React.Component {
 
     getMoviesFromApi = async () => {
         return await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}${this.props.url}`
+            `${process.env.REACT_APP_BACKEND_URL}${this.props.url}`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
         );
     }
     fetchMovies = () => {

@@ -51,7 +51,7 @@ class AddMovie extends React.Component {
         this.submitButtonRef.current.disabled = true;
 
         axios.post(link, formData,
-            {headers: {"Authorization": `Bearer ${this.token}`}})
+            {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}})
             .then((response) => {
                     window.location.replace('/movies');
             })

@@ -43,7 +43,7 @@ class Header extends React.Component  {
                         <Nav.Link href="/home">Strona główna</Nav.Link>
 
                         {
-                            isLoggedIn() ?
+                            isLoggedIn() && !isAdmin() ?
                                 <Nav.Link href="/myReservationsHistory">Moje rezerwacje</Nav.Link> :
                                 null
 
