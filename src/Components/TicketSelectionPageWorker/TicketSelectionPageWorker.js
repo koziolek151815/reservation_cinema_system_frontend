@@ -135,7 +135,8 @@ function TicketSelectionPageWorker(props) {
         prepareRequestBody();
         console.log(listTicketsRequestPost);
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/tickets/worker/${props.match.params.id}`, {
-            ticketsList: prepareRequestBody()
+            ticketsList: prepareRequestBody(),
+            price: totalPrice
         }, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}})
             .then((response) => {
                 props.history.push(`/screeningInfo/${props.match.params.id}`);
