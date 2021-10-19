@@ -44,8 +44,9 @@ function App() {
                     <Route path="/login">
                         <LoginForm showError={updateErrorMessage}/>
                     </Route>
-                    <PrivateRoute path="/home" component={<MainPage/>}>
-                    </PrivateRoute>
+                    <Route path="/home">
+                        <MainPage/>
+                    </Route>
                     <PrivateRoute path="/screening/:id" component={<TicketSelectionPage/>}>
                     </PrivateRoute>
                     <PrivateRoute path="/screeningWorker/:id" component={<TicketSelectionPageWorker/>}>

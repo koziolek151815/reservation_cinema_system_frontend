@@ -26,6 +26,7 @@ function TicketSelectionPage(props) {
     const [numberAndTypesTicketsSelected, setNumberAndTypesTicketsSelected] = useState(false);
     const [ticketsToSelectNumber, setTicketsToSelectNumber] = useState(0);
     const [listTicketsRequestPost, setListTicketsRequestPost] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0.00);
     useEffect(() => {
         const fetchTicketTypes = async () => {
             const result = await axios(
@@ -34,7 +35,7 @@ function TicketSelectionPage(props) {
             setTicketTypes(result.data);
             const quantities = [];
             result.data.forEach(item => {
-                quantities.push({ticketTypeId: item.ticketTypeId, quantity: 0});
+                quantities.push({ticketTypeId: item.ticketTypeId, quantity: 0, price: 0.0});
             })
             setSelectedTicketTypes(quantities);
             console.log(selectedTicketTypes);
@@ -61,10 +62,12 @@ function TicketSelectionPage(props) {
 
     const onQuantityChange = (event, id) => {
         const index = selectedTicketTypes.findIndex(el => el.ticketTypeId === id);
-        console.log(event.target.value);
+        const changedTicketTypePriceForOne = ticketTypes.find(el => el.ticketTypeId === id).price;
+        console.log(changedTicketTypePriceForOne);
         let newArray = [...selectedTicketTypes];
-        newArray[index] = {...newArray[index], quantity: parseInt(event.target.value)};
+        newArray[index] = {...newArray[index], quantity: parseInt(event.target.value), price: parseInt(event.target.value) * changedTicketTypePriceForOne};
         setSelectedTicketTypes(newArray);
+        console.log(selectedTicketTypes);
     }
 
     const countTicketsToSelect = () => {
@@ -72,6 +75,11 @@ function TicketSelectionPage(props) {
             return accumulator + ticketType.quantity;
         }, 0);
         setTicketsToSelectNumber(totalTicketsToSelect);
+
+        let price = selectedTicketTypes.reduce(function (accumulator, ticketType) {
+            return accumulator + ticketType.price;
+        }, 0);
+        setTotalPrice(price);
     }
 
     const setStateTicketTypesList = () => {
@@ -133,7 +141,8 @@ function TicketSelectionPage(props) {
         prepareRequestBody();
         console.log(listTicketsRequestPost);
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/tickets/${props.match.params.id}`, {
-            ticketsList: prepareRequestBody()
+            ticketsList: prepareRequestBody(),
+            price: totalPrice
         }, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}})
             .then((response) => {
                 props.history.push("/myReservationsHistory");
