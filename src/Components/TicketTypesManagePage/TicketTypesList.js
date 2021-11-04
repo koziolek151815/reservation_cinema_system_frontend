@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {Table} from "react-bootstrap";
+import {withRouter} from "react-router-dom";
 
 
 class TicketTypesList extends React.Component {
@@ -16,7 +17,7 @@ class TicketTypesList extends React.Component {
 
     getTicketTypesFromApi = async () => {
         return await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes`,
+            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
         );
     }
     fetchTicketTypes = () => {
@@ -29,7 +30,7 @@ class TicketTypesList extends React.Component {
 
     deleteTicketType = (id) => {
         axios.delete(
-            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes/${id}`,{headers: {"Authorization": `Bearer ${this.token}`}}
+            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes/${id}`,{headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
         ).then((response) => {
             const filteredArray = this.state.ticketTypes.filter(ticketType => ticketType.ticketTypeId !== id)
             this.setState({ticketTypes: filteredArray});
@@ -67,7 +68,7 @@ class TicketTypesList extends React.Component {
                                 <td>{ticketType.name}</td>
                                 <td>{ticketType.price}</td>
                                 <td><a className="btn btn-default bg-info"
-                                       href={`/updateCategory/${ticketType.id}`}>Edit</a></td>
+                                       href={`/editTicketType/${ticketType.ticketTypeId}`}>Edytuj</a></td>
                                 <td>
                                     <button className="btn btn-default bg-danger"
                                             onClick={() => this.deleteTicketType(ticketType.id)}>Delete
@@ -87,4 +88,4 @@ class TicketTypesList extends React.Component {
     }
 }
 
-export default TicketTypesList;
+export default withRouter(TicketTypesList);

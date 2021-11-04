@@ -5,7 +5,7 @@ import {Col} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
 import Button from "react-bootstrap/cjs/Button";
 import {isAdmin, isLoggedIn} from "../../Utility/Authorization";
-
+import './Screening.css';
 
 function Screening(props) {
     const [image, setImage] = useState("");
@@ -23,14 +23,11 @@ function Screening(props) {
         <div className="m-auto">
             <div className="m-auto mb-4">
                 <p> {props.screening.movie.title}</p>
-                {image && <img className="mb-3" alt="post img" src={"data:image/jpeg;base64," + image}/>}
+                {image && <img className="mb-3 photo" style={{resizeMode:'contain'}} alt="post img" src={"data:image/jpeg;base64," + image}/>}
                 {props.screening.screenings.map(screening => (isInFuture(screening.startScreening) || isAdmin()) &&
                     <div className="d-flex m-auto align-items-center justify-content-center">
-                        <p className="p-1"> {formatDate(screening.startScreening).slice(1).slice(-5)}</p>
-                        {isInFuture(screening.startScreening) && isLoggedIn() && !isAdmin() &&<Button onClick={() => props.history.push(`/screening/${screening.screeningId}`)}>Zarezerwuj
-                            bilet</Button>}
-                        {isInFuture(screening.startScreening) && isLoggedIn() && isAdmin() &&<Button onClick={() => props.history.push(`/screeningWorker/${screening.screeningId}`)}>Zarezerwuj
-                            bilet</Button>}
+                        {isInFuture(screening.startScreening) && isLoggedIn() && !isAdmin() &&<Button onClick={() => props.history.push(`/screening/${screening.screeningId}`)}>{formatDate(screening.startScreening).slice(1).slice(-5)}</Button>}
+                        {isInFuture(screening.startScreening) && isLoggedIn() && isAdmin() &&<Button onClick={() => props.history.push(`/screeningWorker/${screening.screeningId}`)}>Z{formatDate(screening.startScreening).slice(1).slice(-5)}</Button>}
                         {isAdmin() &&
                         <Button onClick={() => props.history.push(`/screeningInfo/${screening.screeningId}`)}>Dane
                             dotyczące seansu</Button>}

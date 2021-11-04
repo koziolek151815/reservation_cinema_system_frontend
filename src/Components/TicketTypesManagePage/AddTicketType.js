@@ -12,7 +12,7 @@ function AddTicketType(props) {
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/ticketTypes`, {
             name: nameInput.current.value,
             price: priceInput.current.value
-        },{headers: {"Authorization": `Bearer ${this.token}`}})
+        },{headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}})
             .then((response) => {
                 props.history.push('/ticketTypes')
             }, (error) => {
