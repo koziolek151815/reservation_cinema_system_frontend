@@ -23,6 +23,7 @@ function Screening(props) {
         <div className="m-auto">
             <div className="m-auto mb-4">
                 <p> {props.screening.movie.title}</p>
+                <p> {props.screening.movie.description}</p>
                 {image && <img className="mb-3 photo" style={{resizeMode:'contain'}} alt="post img" src={"data:image/jpeg;base64," + image}/>}
                 {props.screening.screenings.map(screening => (isInFuture(screening.startScreening) || isAdmin()) &&
                     <div className="d-flex m-auto align-items-center justify-content-center">

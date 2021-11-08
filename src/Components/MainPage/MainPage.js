@@ -42,7 +42,7 @@ class MainPage extends React.Component {
                                 <Button onClick={() => this.props.history.push(`/addScreening`)}>Dodaj seans
                                 </Button> : null}
                             {isAdmin() ? <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
-                                                     disabledKeyboardNavigation
+                                                     disabledKeyboardNavigation dateFormat="dd/MM/yyyy"
                                                      onChange={(date) => this.setState({startDate: date})}/>
                                 : <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
                                               minDate={new Date()} disabledKeyboardNavigation

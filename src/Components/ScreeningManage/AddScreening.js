@@ -101,7 +101,7 @@ class AddScreening extends React.Component {
                 <h3>Dodaj seans</h3>
                 <p>Wybierz dzień i salę</p>
                 <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
-                            disabledKeyboardNavigation
+                            disabledKeyboardNavigation dateFormat="dd/MM/yyyy"
                             onChange={(date) => this.setState({startDate: date})}/>
                 <select className="custom-select" ref={this.auditoriumRef}>
                     {this.state.auditoriums.map(auditorium =>
