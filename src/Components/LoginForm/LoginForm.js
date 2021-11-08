@@ -48,23 +48,22 @@ function LoginForm(props) {
         <div className="card mt-3 p-3" style={{width:"500px", marginLeft:"auto", marginRight:"auto", height:"auto"}}>
             <form>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label htmlFor="exampleInputEmail1">Adres email</label>
                     <input type="email"
                            className="form-control"
                            id="email"
                            aria-describedby="emailHelp"
-                           placeholder="Enter email"
+                           placeholder="Wprowadź email"
                            value={state.email}
                            onChange={handleChange}
                     />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group text-left">
                     <label htmlFor="exampleInputPassword1">Password</label>
                     <input type="password"
                            className="form-control"
                            id="password"
-                           placeholder="Password"
+                           placeholder="Wprowadź hasło"
                            value={state.password}
                            onChange={handleChange}
                     />
@@ -74,11 +73,11 @@ function LoginForm(props) {
                     type="submit"
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
-                >Submit</button>
+                >Zaloguj się</button>
             </form>
             <div className="registerMessage">
-                <span>Dont have an account? </span>
-                <a className="loginText" href="/register">Register</a>
+                <span>Nie masz konta? </span>
+                <a className="loginText" href="/register">Zarejestruj się</a>
             </div>
             <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
                 {state.successMessage}

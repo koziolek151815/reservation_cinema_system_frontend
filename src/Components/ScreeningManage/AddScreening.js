@@ -9,7 +9,7 @@ import {Button, Col} from "react-bootstrap";
 import Screening from "../ScreeningComponent/Screening";
 import ScreeningDayAuditorium from "./ScreeningDayAuditorium";
 import {formatDate} from "../../Utility/Date";
-
+import './AddScreeningStyles.css';
 registerLocale('pl', pl)
 
 class AddScreening extends React.Component {
@@ -97,7 +97,7 @@ class AddScreening extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="addScreening">
                 <h3>Dodaj seans</h3>
                 <p>Wybierz dzień i salę</p>
                 <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}

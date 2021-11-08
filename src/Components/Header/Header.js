@@ -50,28 +50,35 @@ class Header extends React.Component  {
                         }
                         {
                             isLoggedIn() && isAdmin() ?
-                                <Nav.Link href="/addMovie">Dodaj film</Nav.Link> :
+                                <Nav.Link href="/movies">Filmy</Nav.Link> :
                                 null
 
                         }
                         {
                             isLoggedIn() && isAdmin() ?
-                                <Nav.Link href="/addAuditorium">Dodaj salę kinową</Nav.Link> :
+                                <Nav.Link href="/auditoriums">Sale kinowe</Nav.Link> :
+                                null
+
+                        }
+                        {
+                            isLoggedIn() && isAdmin() ?
+                                <Nav.Link href="/ticketTypes">Rodzaje biletów</Nav.Link> :
                                 null
 
                         }
                     </Nav>
 
-                    <Nav>
-                        {
-                            isLoggedIn() ?
-                                <Button onClick={logout}>Wyloguj</Button> :
-                                <Nav.Link href="/login">Zaloguj</Nav.Link>
-                        }
 
-                    </Nav>
 
                 </Navbar.Collapse>
+                <Nav>
+                    {
+                        isLoggedIn() ?
+                            <Button onClick={logout}>Wyloguj</Button> :
+                            <Nav.Link href="/login">Zaloguj</Nav.Link>
+                    }
+
+                </Nav>
             </Navbar>
         )
     }

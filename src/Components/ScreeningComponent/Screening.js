@@ -27,7 +27,7 @@ function Screening(props) {
                 {props.screening.screenings.map(screening => (isInFuture(screening.startScreening) || isAdmin()) &&
                     <div className="d-flex m-auto align-items-center justify-content-center">
                         {isInFuture(screening.startScreening) && isLoggedIn() && !isAdmin() &&<Button onClick={() => props.history.push(`/screening/${screening.screeningId}`)}>{formatDate(screening.startScreening).slice(1).slice(-5)}</Button>}
-                        {isInFuture(screening.startScreening) && isLoggedIn() && isAdmin() &&<Button onClick={() => props.history.push(`/screeningWorker/${screening.screeningId}`)}>Z{formatDate(screening.startScreening).slice(1).slice(-5)}</Button>}
+                        {isInFuture(screening.startScreening) && isLoggedIn() && isAdmin() &&<Button onClick={() => props.history.push(`/screeningWorker/${screening.screeningId}`)}>{formatDate(screening.startScreening).slice(1).slice(-5)}</Button>}
                         {isAdmin() &&
                         <Button onClick={() => props.history.push(`/screeningInfo/${screening.screeningId}`)}>Dane
                             dotyczące seansu</Button>}

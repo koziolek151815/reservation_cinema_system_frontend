@@ -35,27 +35,27 @@ function RegistrationForm(props) {
                     if(response.status === 201){
                         setState(prevState => ({
                             ...prevState,
-                            'successMessage' : 'Registration successful. You can go to login page'
+                            'successMessage' : 'Rejestracja przebiegła pomyślnie. Możesz się zalogować.'
                         }))
                         props.showError(null);
                     }
 
                     else if (response.status === 500){
                         console.log(response);
-                        props.showError("Registration failed");
+                        props.showError("Błąd podczas rejestracji.");
                     }
                     else{
                         console.log(response);
-                        props.showError("Some error ocurred");
+                        props.showError("Błąd podczas rejestracji");
                     }
                 })
                 .catch(function (error) {
                     console.log("Email taken");
-                    props.showError("Registration failed");
+                    props.showError("Email już zajęty");
 
                 });
         } else {
-            props.showError('Please enter not null username, email and password')
+            props.showError('Uzupełnij puste pola')
         }
 
     }
@@ -91,7 +91,7 @@ function RegistrationForm(props) {
         <div className="card mt-3 p-3" style={{width:"500px", marginLeft:"auto", marginRight:"auto", height:"auto"}}>
             <form>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label htmlFor="exampleInputEmail1">Adres email</label>
                     <input type="email"
                            className="form-control"
                            id="email"
@@ -100,7 +100,6 @@ function RegistrationForm(props) {
                            value={state.email}
                            onChange={handleChange}
                     />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group text-left">
                     <label htmlFor="exampleInputUsername1">Username</label>
@@ -113,21 +112,21 @@ function RegistrationForm(props) {
                     />
                 </div>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label htmlFor="exampleInputPassword1">Hasło</label>
                     <input type="password"
                            className="form-control"
                            id="password"
-                           placeholder="Password"
+                           placeholder="Wpisz hasło"
                            value={state.password}
                            onChange={handleChange}
                     />
                 </div>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">Confirm Password</label>
+                    <label htmlFor="exampleInputPassword1">Potwierdź hasło</label>
                     <input type="password"
                            className="form-control"
                            id="confirmPassword"
-                           placeholder="Confirm Password"
+                           placeholder="Potwierdź hasło"
                            value={state.confirmPassword}
                            onChange={handleChange}
                     />
@@ -137,15 +136,15 @@ function RegistrationForm(props) {
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
                 >
-                    Register
+                    Zarejestruj się
                 </button>
             </form>
             <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
                 {state.successMessage}
             </div>
             <div className="mt-2">
-                <span>Already have an account? </span>
-                <span className="loginText" onClick={() => redirectToLogin()}>Login here</span>
+                <span>Masz już konto? </span>
+                <span className="loginText" onClick={() => redirectToLogin()}>Zaloguj się</span>
             </div>
 
         </div>
