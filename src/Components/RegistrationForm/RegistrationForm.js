@@ -8,7 +8,6 @@ function RegistrationForm(props) {
 
     const [state , setState] = useState({
         email : "",
-        username : "",
         password : "",
         confirmPassword: "",
         successMessage: null
@@ -21,7 +20,7 @@ function RegistrationForm(props) {
         }))
     }
     const sendDetailsToServer = () => {
-        if(state.email.length && state.password.length && state.username.length) {
+        if(state.email.length && state.password.length) {
 
             props.showError(null);
             const payload={
@@ -66,21 +65,17 @@ function RegistrationForm(props) {
         e.preventDefault();
         var error = false;
         if(!(state.password === state.confirmPassword)) {
-            props.showError('Passwords do not match');
+            props.showError('Hasła nie są zgodne');
             error = true;
         }
 
         var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if(!state.email.match(mailformat)){
-            props.showError('Email is not valid');
+            props.showError('Email nie jest poprawny');
             error = true;
         }
         if(!(state.password.length > 4)){
-            props.showError('Password is too short');
-            error = true;
-        }
-        if(!(state.username.length > 4)){
-            props.showError('Username is too short');
+            props.showError('Hasło jest za krótkie');
             error = true;
         }
         if (!error){
@@ -98,16 +93,6 @@ function RegistrationForm(props) {
                            aria-describedby="emailHelp"
                            placeholder="Enter email"
                            value={state.email}
-                           onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group text-left">
-                    <label htmlFor="exampleInputUsername1">Username</label>
-                    <input className="form-control"
-                           type="text"
-                           id="username"
-                           placeholder="Username"
-                           value={state.username}
                            onChange={handleChange}
                     />
                 </div>
