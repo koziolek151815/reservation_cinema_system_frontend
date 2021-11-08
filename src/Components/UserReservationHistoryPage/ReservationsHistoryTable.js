@@ -2,18 +2,39 @@ import React from "react";
 import axios from "axios";
 import {Table} from "react-bootstrap";
 import {formatDate} from "../../Utility/Date";
+import DeleteConfirmation from "../../Utility/DeleteConfirmation";
 
 
 class ReservationsHistoryTable extends React.Component {
     state = {
         reservations: [],
-        error: false
+        error: false,
+        displayConfirmationModal: false,
+        currentReservationModal: null
     };
 
     constructor(props) {
         super(props);
         this.fetchReservations();
         this.token = localStorage.getItem('token');
+    }
+
+    hideConfirmationModal = () =>{
+        this.setState({
+            displayConfirmationModal: false
+        })
+    }
+    showDeleteModal = (reservationId) =>{
+        this.setState({
+            displayConfirmationModal: true,
+            currentReservationModal: reservationId
+        })
+    }
+    submitDelete = (reservationId) =>{
+        this.setState({
+            displayConfirmationModal: false
+        })
+        this.cancelReservation(reservationId);
     }
 
     getReservationsFromApi = async () => {
@@ -72,13 +93,14 @@ class ReservationsHistoryTable extends React.Component {
                                 <td>{reservation.paid === true ? "Tak" : "Nie"}</td>
                                 <td>{reservation.paid === true ? "Odbyto" :
                                     <button className="btn btn-default bg-danger"
-                                            onClick={() => this.cancelReservation(reservation.reservationId)}>Odwołaj
+                                            onClick={() => this.showDeleteModal(reservation.reservationId)}>Odwołaj
                                     </button>}</td>
                             </tr>
                         ))}
                         </tbody>
                     </Table>)
                     : <h5> No reservations</h5>}
+                <DeleteConfirmation showModal={this.state.displayConfirmationModal} confirmModal={this.submitDelete} hideModal={this.hideConfirmationModal} id={this.state.currentReservationModal} title={"Odwołanie rezerwacji"} message={"Czy chcesz odwołać tę rezerwację?"}/>
             </div>
         );
     }

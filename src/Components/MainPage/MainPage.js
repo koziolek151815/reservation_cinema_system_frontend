@@ -45,7 +45,7 @@ class MainPage extends React.Component {
                                                      disabledKeyboardNavigation dateFormat="dd/MM/yyyy"
                                                      onChange={(date) => this.setState({startDate: date})}/>
                                 : <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
-                                              minDate={new Date()} disabledKeyboardNavigation
+                                              minDate={new Date()} disabledKeyboardNavigation dateFormat="dd/MM/yyyy"
                                               onChange={(date) => this.setState({startDate: date})}/>}
                             <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj wybranego
                                 dnia</Button>
