@@ -8,6 +8,9 @@ import Screening from "../ScreeningComponent/Screening";
 import Seat from "./Seats";
 import Select from 'react-select'
 import TicketTypesTable from "./TicketTypesTable";
+import {Snackbar} from "@material-ui/core";
+import {Alert} from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 
 
 function TicketSelectionPage(props) {
@@ -22,11 +25,11 @@ function TicketSelectionPage(props) {
     const [rows, setRows] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [selectedTicketTypes, setSelectedTicketTypes] = useState([]);
-    const ticketTypeRef = useRef(null);
     const [numberAndTypesTicketsSelected, setNumberAndTypesTicketsSelected] = useState(false);
     const [ticketsToSelectNumber, setTicketsToSelectNumber] = useState(0);
     const [listTicketsRequestPost, setListTicketsRequestPost] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0.00);
+    const [open, setOpen] = React.useState(false);
     useEffect(() => {
         const fetchTicketTypes = async () => {
             const result = await axios(
@@ -138,6 +141,10 @@ function TicketSelectionPage(props) {
     }
 
     const bookTicketRequest = () => {
+        if (ticketsToSelectNumber !== selectedSeats.length){
+            setOpen(true);
+            return;
+        }
         prepareRequestBody();
         console.log(listTicketsRequestPost);
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/tickets/${props.match.params.id}`, {
@@ -155,6 +162,13 @@ function TicketSelectionPage(props) {
         setStateTicketTypesList();
         setNumberAndTypesTicketsSelected(true);
     }
+
+    const handleClose = (event, reason) => {
+        setOpen(false);
+    };
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
     return (
         <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -185,6 +199,11 @@ function TicketSelectionPage(props) {
                     </p>)
                     }
                     <button onClick={bookTicketRequest} className="btn btn-primary m-2">Zarezerwuj bilety</button>
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                            Wybrałeś niepoprawną liczbę biletów
+                        </Alert>
+                    </Snackbar>
                 </div>
                 }
             </div>
