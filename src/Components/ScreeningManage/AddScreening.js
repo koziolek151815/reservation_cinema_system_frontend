@@ -102,7 +102,7 @@ class AddScreening extends React.Component {
                 <p>Wybierz dzień i salę</p>
                 <div className={"dayAndAuditorium"}>
                     <div className={"customPicker"}>
-                <DatePicker  ocale="pl" calendarStartDay={1} selected={this.state.startDate}
+                <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
                             disabledKeyboardNavigation dateFormat="dd/MM/yyyy"
                             onChange={(date) => this.setState({startDate: date})}/>
                     </div>
