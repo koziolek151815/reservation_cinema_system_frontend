@@ -24,7 +24,6 @@ function ScreeningDayAuditorium(props) {
                 <p> {props.screening.movieResponseDto.title}</p>
                 {image && <img className="mb-3" alt="post img" src={"data:image/jpeg;base64," + image}/>}
                 <p className="p-1"> {formatDate(props.screening.startScreening).slice(1).slice(-5)} - {formatDate(props.screening.endScreening).slice(1).slice(-5)}</p>
-                <Button onClick={() => props.history.push(`/screening/${props.screening.screeningId}`)}>Odwołaj</Button>
             </div>
         </div>
     );

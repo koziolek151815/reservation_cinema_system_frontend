@@ -100,27 +100,34 @@ class AddScreening extends React.Component {
             <div className="addScreening">
                 <h3>Dodaj seans</h3>
                 <p>Wybierz dzień i salę</p>
-                <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
+                <div className={"dayAndAuditorium"}>
+                    <div className={"customPicker"}>
+                <DatePicker  ocale="pl" calendarStartDay={1} selected={this.state.startDate}
                             disabledKeyboardNavigation dateFormat="dd/MM/yyyy"
                             onChange={(date) => this.setState({startDate: date})}/>
+                    </div>
                 <select className="custom-select" ref={this.auditoriumRef}>
                     {this.state.auditoriums.map(auditorium =>
                         <option key={auditorium.auditoriumId}
                                 value={auditorium.auditoriumId}> {auditorium.name}</option>
                     )};
                 </select>
-                <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj seanse dla tego dnia i
-                    sali</Button>
-                <select className="custom-select" ref={this.movieRef}>
-                    {this.state.movies.map(movie =>
-                        <option key={movie.movieId} value={movie.movieId}> {movie.title}</option>
-                    )};
-                </select>
-                <input ref={this.startTimeRef} onChange={this.changeEndScreening} type="text" name="name"
-                       className="form-control" aria-describedby="emailHelp"
-                       placeholder="Godzina rozpoczęcia"/>
+                    <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj seanse dla tego dnia i
+                        sali</Button>
+                </div>
+                <div className={"addMovie"}>
+                    <select className="custom-select" ref={this.movieRef}>
+                        {this.state.movies.map(movie =>
+                            <option key={movie.movieId} value={movie.movieId}> {movie.title}</option>
+                        )};
+                    </select>
+                    <input id={"startTime"} ref={this.startTimeRef} onChange={this.changeEndScreening} type="text" name="name"
+                           className="form-control" aria-describedby="emailHelp"
+                           placeholder="Godzina rozpoczęcia"/>
+                    <Button className="m-2" onClick={() => this.addScreening()}>Dodaj seans</Button>
+                </div>
                 {this.state.validDate && <p>Godzina zakończenia: {formatDate(this.state.endScreeningMovie)}</p>}
-                <Button className="m-2" onClick={() => this.addScreening()}>Dodaj seans</Button>
+
                 {this.state.screenings.length !== 0 ? this.state.screenings.map(screening =>
                     <ScreeningDayAuditorium screening={screening} key={screening.screeningId}/>
                 ) : `Brak seansów dla tego dnia i sali`}

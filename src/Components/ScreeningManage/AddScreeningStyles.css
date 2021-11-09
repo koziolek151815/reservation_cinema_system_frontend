@@ -1,3 +1,20 @@
 .addScreening{
     background-color: antiquewhite;
 }
+.dayAndAuditorium{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.customPicker{
+    width: 200px;
+}
+.addMovie{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#startTime{
+    width: 300px;
+    margin-left: 5px;
+}
