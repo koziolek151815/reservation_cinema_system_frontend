@@ -13,13 +13,19 @@
 }
 
 #title{
-    width: 40%;
+    width: 33.22%;
     height: 40px;
     resize: none;
     margin-right: 2px;
 }
 #director{
-    width: 40%;
+    width: 33.22%;
+    height: 40px;
+    resize: none;
+    margin-right: 2px;
+}
+#duration{
+    width: 33.22%;
     height: 40px;
     resize: none;
 }

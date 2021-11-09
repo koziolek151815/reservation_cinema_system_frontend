@@ -39,15 +39,10 @@ class MoviesList extends React.Component {
             <div>
                 {this.state.movies.map((movie, index) => (
                     <div>
-                        <p>Tytuł: {movie.title}</p>
+                        <h5>{movie.title}</h5>
                         <MovieImage movieId={movie.movieId} key={movie.movieId}/>
-                        <p>Reżyser: {movie.director}</p>
-                        <p>Opis: {movie.description}</p>
-                        <a className="btn btn-default bg-info"
-                           href={`/updateMovie/${movie.movieId}`}>Edytuj</a>
-                        <button className="btn btn-default bg-danger"
-                                onClick={() => this.deleteMovie(movie.movieId)}>Usuń z repertuaru
-                        </button>
+                        <h6>Reżyseria: {movie.director}</h6>
+                        <p>{movie.description}</p>
                     </div>
                 ))}
             </div>

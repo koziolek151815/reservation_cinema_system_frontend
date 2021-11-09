@@ -58,7 +58,6 @@ class TicketTypesList extends React.Component {
                             <th>Typ</th>
                             <th>Cena</th>
                             <th>Edytuj</th>
-                            <th>Usuń</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -69,16 +68,11 @@ class TicketTypesList extends React.Component {
                                 <td>{ticketType.price}</td>
                                 <td><a className="btn btn-default bg-info"
                                        href={`/editTicketType/${ticketType.ticketTypeId}`}>Edytuj</a></td>
-                                <td>
-                                    <button className="btn btn-default bg-danger"
-                                            onClick={() => this.deleteTicketType(ticketType.id)}>Delete
-                                    </button>
-                                </td>
                             </tr>
                         ))}
                         </tbody>
                     </Table>)
-                    : <h5> No ticket types</h5>}
+                    : <h5> Brak biletów</h5>}
                 {this.state.error && <div className="error">
                     <h4 id="err">Aby usunac typ biletu najpierw usuń bilety ją zawierajace</h4>
                     <button id="errorButton" onClick={this.onErrorSubmit}>Ok</button>

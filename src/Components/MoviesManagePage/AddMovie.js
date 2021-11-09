@@ -11,6 +11,7 @@ class AddMovie extends React.Component {
         description: '',
         director: '',
         selectedFile: null,
+        duration: null
     };
 
     constructor(props) {
@@ -36,13 +37,16 @@ class AddMovie extends React.Component {
     handleDirectorChange = (event) => {
         this.setState(state => ({director: event.target.value}))
     };
+    handleDurationChange = (event) => {
+        this.setState(state => ({duration: event.target.value}))
+    };
 
     sendMovieCreationRequest = () => {
         const formData = new FormData();
         formData.append("title", this.state.title);
         formData.append("director", this.state.director);
         formData.append("description", this.state.description);
-
+        formData.append("duration", this.state.duration);
         if (this.state.selectedFile != null) {
             formData.append("postPhoto", this.state.selectedFile);
         }
@@ -58,7 +62,7 @@ class AddMovie extends React.Component {
             .catch((error) => {
                 this.submitButtonRef.current.disabled = false;
                 console.log(error);
-                alert("File Upload Error");
+                alert("Błąd dodania pliku");
             });
     };
 
@@ -69,10 +73,10 @@ class AddMovie extends React.Component {
         var error = false;
 
         if (this.state.title.length < this.minTitleLength) {
-            this.props.showError('Title is too short!');
+            this.props.showError('Tytuł jest za krótki!');
             error = true;
         } else if (this.state.description.length < this.minDescriptionLength) {
-            this.props.showError('Description is too short!');
+            this.props.showError('Opis jest za krótki!');
             error = true;
         }
         if (!error) {
@@ -88,7 +92,7 @@ class AddMovie extends React.Component {
             return;
         }
         if (file[0] > process.env.REACT_APP_MAX_FILE_SIZE) {
-            this.props.showError('File size is too big!');
+            this.props.showError('Rozmiar pliku jest za duży!');
             this.photoPreview.current.src = null;
             this.setState(state => ({selectedFile: null}))
             return;
@@ -106,11 +110,13 @@ class AddMovie extends React.Component {
 
                     <form autocomplete="off">
                         <img style={{margin: "auto"}} ref={this.photoPreview} id="photoPreview" src="#" alt=""/>
-                        <textarea id={"title"} value={this.title} placeholder={"Title"}
+                        <textarea id={"title"} value={this.title} placeholder={"Tytuł"}
                                   onChange={this.handleTitleChange}/>
-                        <textarea id={"director"} value={this.title} placeholder={"Director"}
+                        <textarea id={"director"} value={this.title} placeholder={"Reżyser"}
                                   onChange={this.handleDirectorChange}/>
-                        <textarea id={"description"} value={this.description} placeholder={"Write something"}
+                        <textarea id={"duration"} value={this.duration} placeholder={"Czas trwania"}
+                                  onChange={this.handleDurationChange}/>
+                        <textarea id={"description"} value={this.description} placeholder={"Opis filmu"}
                                   onChange={this.handleDescriptionChange}/>
 
                         <span className="custom-file w-50 ">
@@ -118,7 +124,7 @@ class AddMovie extends React.Component {
                                    type="file" name="file"
                                    onChange={this.fileInputChangeHandler}/>
                             <label className="custom-file-label"
-                                   htmlFor="customFile">{this.state.selectedFile !== null ? (this.state.selectedFile.name) : ("Choose file")}</label>
+                                   htmlFor="customFile">{this.state.selectedFile !== null ? (this.state.selectedFile.name) : ("Wybierz plik")}</label>
                         </span>
 
                         <button ref={this.submitButtonRef} className={"btn btn-default text-white bg-dark float-right"}
