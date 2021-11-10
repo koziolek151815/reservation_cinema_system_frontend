@@ -2,12 +2,17 @@ import React from "react";
 import axios from "axios";
 import {Table} from "react-bootstrap";
 import {formatDate} from "../../Utility/Date";
+import DeleteConfirmation from "../../Utility/DeleteConfirmation";
+import PayConfirmation from "../../Utility/PayConfirmation";
 
 
 class ReservationsForScreeningTable extends React.Component {
     state = {
         reservations: [],
-        error: false
+        error: false,
+        displayConfirmationModal: false,
+        currentReservationModal: null,
+        displayPayModal: false,
     };
 
     constructor(props) {
@@ -15,7 +20,40 @@ class ReservationsForScreeningTable extends React.Component {
         this.fetchReservations();
         this.token = localStorage.getItem('token');
     }
-
+    hideConfirmationModal = () =>{
+        this.setState({
+            displayConfirmationModal: false
+        })
+    }
+    showDeleteModal = (reservationId) =>{
+        this.setState({
+            displayConfirmationModal: true,
+            currentReservationModal: reservationId
+        })
+    }
+    submitDelete = (reservationId) =>{
+        this.setState({
+            displayConfirmationModal: false
+        })
+        this.cancelReservation(reservationId);
+    }
+    hidePayModal = () =>{
+        this.setState({
+            displayPayModal: false
+        })
+    }
+    showPayModal = (reservationId) =>{
+        this.setState({
+            displayPayModal: true,
+            currentReservationModal: reservationId
+        })
+    }
+    submitPay = (reservationId) =>{
+        this.setState({
+            displayPayModal: false
+        })
+        this.changeStatusOnPaid(reservationId);
+    }
     getReservationsFromApi = async () => {
         return await axios.get(
             `${process.env.REACT_APP_BACKEND_URL}/reservations/${this.props.screeningId}`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
@@ -85,17 +123,21 @@ class ReservationsForScreeningTable extends React.Component {
                                 <td>{reservation.price}</td>
                                 <td>{reservation.paid === true ? "Tak" :
                                     <button className="btn btn-default bg-success"
-                                            onClick={() => this.changeStatusOnPaid(reservation.reservationId)}>Opłać
+                                            onClick={() => this.showPayModal(reservation.reservationId)}>Opłać
                                     </button>}</td>
                                 <td>{reservation.paid === true ? "Niemożliwe" :
                                     <button className="btn btn-default bg-danger"
-                                            onClick={() => this.cancelReservation(reservation.reservationId)}>Odwołaj
+                                            onClick={() => this.showDeleteModal(reservation.reservationId)}>Odwołaj
                                     </button>}</td>
                             </tr>
                         ))}
                         </tbody>
                     </Table>)
                     : <h5> No reservations</h5>}
+                <DeleteConfirmation showModal={this.state.displayConfirmationModal} confirmModal={this.submitDelete} hideModal={this.hideConfirmationModal}
+                                    id={this.state.currentReservationModal} title={"Odwołanie rezerwacji"} message={"Czy chcesz odwołać tę rezerwację?"}/>
+                <PayConfirmation showModal={this.state.displayPayModal} confirmModal={this.submitPay} hideModal={this.hidePayModal}
+                                    id={this.state.currentReservationModal} title={"Opłacenie rezerwacji"} message={"Czy chcesz oznaczyć tę rezerwację jako opłaconą?"}/>
             </div>
         );
     }

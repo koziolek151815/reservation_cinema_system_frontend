@@ -68,7 +68,8 @@ function TicketSelectionPage(props) {
         const changedTicketTypePriceForOne = ticketTypes.find(el => el.ticketTypeId === id).price;
         console.log(changedTicketTypePriceForOne);
         let newArray = [...selectedTicketTypes];
-        newArray[index] = {...newArray[index], quantity: parseInt(event.target.value), price: parseInt(event.target.value) * changedTicketTypePriceForOne};
+        newArray[index] = {...newArray[index], quantity: parseInt(event.target.value),
+            price: parseInt(event.target.value) * changedTicketTypePriceForOne};
         setSelectedTicketTypes(newArray);
         console.log(selectedTicketTypes);
     }
@@ -110,7 +111,8 @@ function TicketSelectionPage(props) {
     const checkIfTakenEarlier = (bookedTickets, num, row) => {
         const ticket = bookedTickets.find(bookedTicket => bookedTicket.row === row && bookedTicket.number === num);
         if (ticket === undefined) return false;
-        return !bookedTickets.find(bookedTicket => bookedTicket.row === row && bookedTicket.number === num).hasOwnProperty('addedByUser');
+        return !bookedTickets.find(bookedTicket => bookedTicket.row === row && bookedTicket.number === num)
+            .hasOwnProperty('addedByUser');
     }
 
     const selectSeat = (bookedTickets, num, row) => {
@@ -171,14 +173,8 @@ function TicketSelectionPage(props) {
     });
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-            <div>
-                {/*<select className="custom-select" ref={ticketTypeRef}>*/}
-                {/*    {ticketTypes.map(ticketType =>*/}
-                {/*        <option key={ticketType.ticketTypeId}*/}
-                {/*                value={ticketType.ticketTypeId}>Bilet {ticketType.name}: {ticketType.price} zł</option>*/}
-                {/*    )};*/}
-                {/*</select>*/}
+        <div style={{display: 'flex', justifyContent: 'center', background: 'antiquewhite'}}>
+            <div style={{background: 'antiquewhite'}}>
                 <h3>Wybierz ilość i rodzaje biletów</h3>
                 <TicketTypesTable onQuantityChange={onQuantityChange}/>
                 {!numberAndTypesTicketsSelected &&

@@ -38,7 +38,7 @@ function LoginForm(props) {
 
             })
             .catch(function (error) {
-                props.showError("Invalid credentials");
+                props.showError("Nieprawidłowe dane logowania");
                 console.log(error);
             });
     }
@@ -68,7 +68,6 @@ function LoginForm(props) {
                            onChange={handleChange}
                     />
                 </div>
-
                 <button
                     type="submit"
                     className="btn btn-primary"

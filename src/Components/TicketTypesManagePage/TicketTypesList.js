@@ -28,19 +28,6 @@ class TicketTypesList extends React.Component {
         })
     };
 
-    deleteTicketType = (id) => {
-        axios.delete(
-            `${process.env.REACT_APP_BACKEND_URL}/ticketTypes/${id}`,{headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
-        ).then((response) => {
-            const filteredArray = this.state.ticketTypes.filter(ticketType => ticketType.ticketTypeId !== id)
-            this.setState({ticketTypes: filteredArray});
-        }, (error) => {
-            this.setState({
-                error: true
-            })
-
-        });
-    }
     onErrorSubmit = () => {
         this.setState({
             error: !this.state.error

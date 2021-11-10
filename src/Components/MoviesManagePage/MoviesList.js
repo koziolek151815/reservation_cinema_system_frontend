@@ -15,7 +15,8 @@ class MoviesList extends React.Component {
 
     getMoviesFromApi = async () => {
         return await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}${this.props.url}`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
+            `${process.env.REACT_APP_BACKEND_URL}${this.props.url}`,
+            {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
         );
     }
     fetchMovies = () => {
@@ -25,15 +26,6 @@ class MoviesList extends React.Component {
             });
         })
     };
-
-    deleteMovie = (id) => {
-        axios.delete(
-            `${process.env.REACT_APP_BACKEND_URL}/movies/${id}`
-        );
-        const filteredArray = this.state.movies.filter(movie => movie.movieId !== id)
-        this.setState({movies: filteredArray});
-    }
-
     render() {
         return (
             <div>

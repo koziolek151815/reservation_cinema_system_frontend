@@ -8,7 +8,8 @@ function Seat(props) {
             {props.num.map((numb, i) => <div>
                 <Button className="m-1" key={i}
                         onClick={() => props.selectSeat(props.bookedTickets, i + 1, props.ind + 1)}
-                        style={{background: props.checkIfTaken(props.bookedTickets, i + 1, props.ind + 1) ? 'red' : 'green'}}>{props.ind + 1} {i + 1}</Button>
+                        style={{background: props.checkIfTaken(props.bookedTickets, i + 1, props.ind + 1) ? 'red' : 'green'}}>
+                    {props.ind + 1} {i + 1}</Button>
             </div>)}
         </div>
     );
