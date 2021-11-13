@@ -75,7 +75,7 @@ class ReservationsHistoryTable extends React.Component {
                             <th>Godzina seansu</th>
                             <th>Sala</th>
                             <th>Bilety</th>
-                            <th>Cena</th>
+                            <th>Cena [zł]</th>
                             <th>Opłacone</th>
                             <th>Odwołanie</th>
                         </tr>
@@ -91,7 +91,7 @@ class ReservationsHistoryTable extends React.Component {
                                     Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
                                 <td>{reservation.price}</td>
                                 <td>{reservation.paid === true ? "Tak" : "Nie"}</td>
-                                <td>{reservation.paid === true ? "Odbyto" :
+                                <td>{reservation.paid === true ? "Niemozliwe" :
                                     <button className="btn btn-default bg-danger"
                                             onClick={() => this.showDeleteModal(reservation.reservationId)}>Odwołaj
                                     </button>}</td>
