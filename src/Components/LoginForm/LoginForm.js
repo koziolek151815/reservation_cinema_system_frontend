@@ -48,18 +48,17 @@ function LoginForm(props) {
         <div className="card mt-3 p-3" style={{width:"500px", marginLeft:"auto", marginRight:"auto", height:"auto"}}>
             <form>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputEmail1">Adres email</label>
+                    <label >Adres email</label>
                     <input type="email"
                            className="form-control"
                            id="email"
-                           aria-describedby="emailHelp"
                            placeholder="Wprowadź email"
                            value={state.email}
                            onChange={handleChange}
                     />
                 </div>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label >Hasło</label>
                     <input type="password"
                            className="form-control"
                            id="password"
