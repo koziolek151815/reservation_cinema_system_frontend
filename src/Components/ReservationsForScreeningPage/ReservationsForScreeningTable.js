@@ -105,7 +105,7 @@ class ReservationsForScreeningTable extends React.Component {
                             <th>Godzina seansu</th>
                             <th>Sala</th>
                             <th>Bilety</th>
-                            <th>Cena</th>
+                            <th>Cena[zł]</th>
                             <th>Opłacone</th>
                             <th>Odwołanie</th>
                         </tr>
@@ -133,7 +133,7 @@ class ReservationsForScreeningTable extends React.Component {
                         ))}
                         </tbody>
                     </Table>)
-                    : <h5> No reservations</h5>}
+                    : <h5> Brak rezerwacji</h5>}
                 <DeleteConfirmation showModal={this.state.displayConfirmationModal} confirmModal={this.submitDelete} hideModal={this.hideConfirmationModal}
                                     id={this.state.currentReservationModal} title={"Odwołanie rezerwacji"} message={"Czy chcesz odwołać tę rezerwację?"}/>
                 <PayConfirmation showModal={this.state.displayPayModal} confirmModal={this.submitPay} hideModal={this.hidePayModal}
