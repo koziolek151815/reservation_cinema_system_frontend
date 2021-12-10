@@ -86,7 +86,7 @@ class ReservationsHistoryTable extends React.Component {
                                 <td>{index + 1}</td>
                                 <td>{reservation.movie}</td>
                                 <td>{formatDate(reservation.screeningDate)}</td>
-                                <td>{reservation.auditoriumName}</td>
+                                <td>Sala {reservation.auditoriumId}</td>
                                 <td>{reservation.tickets.map((ticket) => <p>Rząd {ticket.row},
                                     Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
                                 <td>{reservation.price}</td>

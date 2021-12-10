@@ -112,7 +112,7 @@ class ReservationsForScreeningTable extends React.Component {
         return (
             <div className="tickets">
                 <h2>Rezerwacje na seans</h2>
-                <h5>{this.state.screeningData.screening.movieResponseDto.title} {formatDate(this.state.screeningData.screening.startScreening)} {this.state.screeningData.auditorium.name}</h5>
+                <h5>{this.state.screeningData.screening.movieResponseDto.title} {formatDate(this.state.screeningData.screening.startScreening)} Sala {this.state.screeningData.auditorium.auditoriumId}</h5>
                 {this.state.reservations.length ?
                     (<Table striped bordered hover variant="dark">
                         <thead>
