@@ -15,7 +15,9 @@ import MuiAlert from "@mui/material/Alert";
 
 function TicketSelectionPage(props) {
     const [screeningData, setScreeningData] = useState({
-        "screening": {},
+        "screening": {
+            "movieResponseDto": {}
+        },
         "auditorium": {}
     });
     const [bookedTickets, setBookedTickets] = useState([]);
@@ -173,9 +175,10 @@ function TicketSelectionPage(props) {
     });
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', background: 'antiquewhite'}}>
-            <div style={{background: 'antiquewhite'}}>
-                <h3>Wybierz ilość i rodzaje biletów</h3>
+        <div style={{display: 'flex', justifyContent: 'center', background: 'gainsboro'}}>
+            <div style={{background: 'gainsboro'}}>
+                <h2>{screeningData.screening.movieResponseDto.title} {formatDate(screeningData.screening.startScreening)} {screeningData.auditorium.name}</h2>
+                <h5>Wybierz rodzaje biletów i miejsca </h5>
                 <TicketTypesTable onQuantityChange={onQuantityChange}/>
                 {!numberAndTypesTicketsSelected &&
                 <button onClick={setSelectingTypesDone} className="btn btn-primary">Zatwierdź wybór</button>

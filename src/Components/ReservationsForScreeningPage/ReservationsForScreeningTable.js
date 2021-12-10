@@ -13,11 +13,18 @@ class ReservationsForScreeningTable extends React.Component {
         displayConfirmationModal: false,
         currentReservationModal: null,
         displayPayModal: false,
+        screeningData:{
+            "screening": {
+                "movieResponseDto": {}
+            },
+            "auditorium": {}
+        }
     };
 
     constructor(props) {
         super(props);
         this.fetchReservations();
+        this.fetchScreeningData();
         this.token = localStorage.getItem('token');
     }
     hideConfirmationModal = () =>{
@@ -66,6 +73,15 @@ class ReservationsForScreeningTable extends React.Component {
             });
         })
     };
+    fetchScreeningData = async () => {
+        const result = await axios(
+            process.env.REACT_APP_BACKEND_URL + `/screenings/${this.props.screeningId}`, {headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}}
+        );
+        this.setState({
+            screeningData: result.data
+        });
+
+    };
 
     changeStatusOnPaid(reservationId) {
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/reservations/${reservationId}`, {
@@ -95,15 +111,14 @@ class ReservationsForScreeningTable extends React.Component {
     render() {
         return (
             <div className="tickets">
+                <h2>Rezerwacje na seans</h2>
+                <h5>{this.state.screeningData.screening.movieResponseDto.title} {formatDate(this.state.screeningData.screening.startScreening)} {this.state.screeningData.auditorium.name}</h5>
                 {this.state.reservations.length ?
                     (<Table striped bordered hover variant="dark">
                         <thead>
                         <tr>
                             <th>Indeks</th>
                             <th>Użytkownik</th>
-                            <th>Film</th>
-                            <th>Godzina seansu</th>
-                            <th>Sala</th>
                             <th>Bilety</th>
                             <th>Cena[zł]</th>
                             <th>Opłacone</th>
@@ -115,9 +130,6 @@ class ReservationsForScreeningTable extends React.Component {
                             <tr>
                                 <td>{index + 1}</td>
                                 <td>{reservation.userEmail}</td>
-                                <td>{reservation.movie}</td>
-                                <td>{formatDate(reservation.screeningDate)}</td>
-                                <td>{reservation.auditoriumName}</td>
                                 <td>{reservation.tickets.map((ticket) => <p>Rząd {ticket.row},
                                     Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
                                 <td>{reservation.price}</td>

@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
-
+import "./AddTicketType.css"
 
 function AddTicketType(props) {
     const nameInput = useRef(null);
@@ -20,17 +20,17 @@ function AddTicketType(props) {
     }
     return (
         <div className="">
-            <h4> Dodaj kategorię biletu</h4>
+            <h4> Dodaj nowy typ biletu</h4>
             <form>
-                <div className="form-group">
+                <div className="form-group addTicketType">
                     <label>Typ biletu</label>
                     <input ref={nameInput} type="text" name="name" className="form-control" aria-describedby="emailHelp"
-                           placeholder="typ biletu"/>
-                    <label>Cena</label>
+                           placeholder="typ biletu" id={"ticketType"}/>
+                    <label>Cena [zł]</label>
                     <input ref={priceInput} type="text" name="name" className="form-control" aria-describedby="emailHelp"
-                           placeholder="cena"/>
+                           placeholder="cena" id={"price"}/>
                 </div>
-                <button onClick={addTicketTypeRequest} type="submit" className="btn btn-primary">Dodaj</button>
+                <button onClick={addTicketTypeRequest} type="submit" className="btn btn-primary submit">Dodaj</button>
             </form>
         </div>
     );

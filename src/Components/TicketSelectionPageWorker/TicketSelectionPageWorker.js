@@ -6,11 +6,14 @@ import Seat from "../TicketSelectionPage/Seats";
 import {Snackbar} from "@material-ui/core";
 import {Alert} from "@mui/material";
 import MuiAlert from '@mui/material/Alert';
+import {formatDate} from "../../Utility/Date";
 
 
 function TicketSelectionPageWorker(props) {
     const [screeningData, setScreeningData] = useState({
-        "screening": {},
+        "screening": {
+            "movieResponseDto": {}
+        },
         "auditorium": {}
     });
     const [bookedTickets, setBookedTickets] = useState([]);
@@ -171,7 +174,8 @@ function TicketSelectionPageWorker(props) {
                 {/*                value={ticketType.ticketTypeId}>Bilet {ticketType.name}: {ticketType.price} zł</option>*/}
                 {/*    )};*/}
                 {/*</select>*/}
-                <h3>Wybierz ilość i rodzaje biletów</h3>
+                <h2>{screeningData.screening.movieResponseDto.title} {formatDate(screeningData.screening.startScreening)} {screeningData.auditorium.name}</h2>
+                <h5>Wybierz rodzaje biletów i miejsca </h5>
                 <TicketTypesTable onQuantityChange={onQuantityChange}/>
                 {!numberAndTypesTicketsSelected &&
                 <button onClick={setSelectingTypesDone} className="btn btn-primary">Zatwierdź wybór</button>

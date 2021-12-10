@@ -46,7 +46,7 @@ class AuditoriumsList extends React.Component {
                         {this.state.auditoriums.map((auditorium, index) => (
                             <tr>
                                 <td>{index + 1}</td>
-                                <td>{auditorium.name}</td>
+                                <td>Sala {auditorium.auditoriumId}</td>
                                 <td>{auditorium.rows}</td>
                                 <td>{auditorium.numbers}</td>
                             </tr>

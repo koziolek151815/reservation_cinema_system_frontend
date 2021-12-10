@@ -7,9 +7,10 @@ function TicketTypesManagePage() {
     return (
         <div className="MainPage" style={{margin: "0 auto"}}>
             <h2>Rodzaje biletów</h2>
-            <TicketTypesList url={allTicketTypesUrl}/>
             <a className="btn btn-default bg-success"
-               href={`/addTicketType`}>Dodaj nowy rodzaj biletu</a>
+               href={`/addTicketType`}>Dodaj nowy typ biletu</a>
+            <TicketTypesList url={allTicketTypesUrl}/>
+
         </div>
     );
 }

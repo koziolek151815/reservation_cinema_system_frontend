@@ -42,7 +42,7 @@ function Screening(props) {
                                 {isInFuture(screening.startScreening) && isLoggedIn() && isAdmin() &&<Button style={{marginRight: "3px"}} onClick={() => props.history.push(`/screeningWorker/${screening.screeningId}`)}>{formatDate(screening.startScreening).slice(1).slice(-5)}</Button>}
                                 {isAdmin() &&
                                 <Button  onClick={() => props.history.push(`/screeningInfo/${screening.screeningId}`)}>Dane
-                                    dotyczące seansu</Button>}
+                                    o seansie</Button>}
                             </div>
                         )}
                         </div>

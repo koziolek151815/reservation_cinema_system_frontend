@@ -109,7 +109,7 @@ class AddScreening extends React.Component {
                 <select className="custom-select" ref={this.auditoriumRef}>
                     {this.state.auditoriums.map(auditorium =>
                         <option key={auditorium.auditoriumId}
-                                value={auditorium.auditoriumId}> {auditorium.name}</option>
+                                value={auditorium.auditoriumId}> Sala {auditorium.auditoriumId}</option>
                     )};
                 </select>
                     <Button className="m-2" onClick={() => this.getScreenings()}>Wyszukaj seanse dla tego dnia i

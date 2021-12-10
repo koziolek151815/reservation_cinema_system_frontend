@@ -55,7 +55,7 @@ class TicketTypesTable extends React.Component {
                         <tr>
                             <th>Indeks</th>
                             <th>Typ</th>
-                            <th>Cena</th>
+                            <th>Cena [zł]</th>
                             <th>Ilość</th>
                         </tr>
                         </thead>
