@@ -177,7 +177,7 @@ function TicketSelectionPage(props) {
     return (
         <div style={{display: 'flex', justifyContent: 'center', background: 'antiquewhite'}}>
             <div style={{background: 'antiquewhite'}}>
-                <h2>{screeningData.screening.movieResponseDto.title} {formatDate(screeningData.screening.startScreening)} {screeningData.auditorium.name}</h2>
+                <h2>{screeningData.screening.movieResponseDto.title} {formatDate(screeningData.screening.startScreening)} Sala {screeningData.auditorium.auditoriumId}</h2>
                 <h5>Wybierz rodzaje biletów i miejsca </h5>
                 <TicketTypesTable onQuantityChange={onQuantityChange}/>
                 {!numberAndTypesTicketsSelected &&

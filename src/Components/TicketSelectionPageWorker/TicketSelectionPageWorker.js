@@ -174,7 +174,7 @@ function TicketSelectionPageWorker(props) {
                 {/*                value={ticketType.ticketTypeId}>Bilet {ticketType.name}: {ticketType.price} zł</option>*/}
                 {/*    )};*/}
                 {/*</select>*/}
-                <h2>{screeningData.screening.movieResponseDto.title} {formatDate(screeningData.screening.startScreening)} {screeningData.auditorium.name}</h2>
+                <h2>{screeningData.screening.movieResponseDto.title} {formatDate(screeningData.screening.startScreening)} Sala {screeningData.auditorium.auditoriumId}</h2>
                 <h5>Wybierz rodzaje biletów i miejsca </h5>
                 <TicketTypesTable onQuantityChange={onQuantityChange}/>
                 {!numberAndTypesTicketsSelected &&

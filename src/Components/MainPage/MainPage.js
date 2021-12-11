@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {registerLocale, setDefaultLocale} from "react-datepicker";
 import pl from 'date-fns/locale/pl';
 import {withRouter} from "react-router-dom";
-import {isAdmin} from "../../Utility/Authorization";
+import {isWorker} from "../../Utility/Authorization";
 
 registerLocale('pl', pl)
 
@@ -38,10 +38,10 @@ class MainPage extends React.Component {
                 <Container className="my-1 pb-3">
                     <Row className="p-1">
                         <Col xs={12} md={12} className="p-1">
-                            {isAdmin() ?
+                            {isWorker() ?
                                 <Button onClick={() => this.props.history.push(`/addScreening`)}>Dodaj seans
                                 </Button> : null}
-                            {isAdmin() ? <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
+                            {isWorker() ? <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}
                                                      disabledKeyboardNavigation dateFormat="dd/MM/yyyy"
                                                      onChange={(date) => this.setState({startDate: date})}/>
                                 : <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}

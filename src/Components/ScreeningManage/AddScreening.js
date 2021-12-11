@@ -99,7 +99,7 @@ class AddScreening extends React.Component {
         return (
             <div className="addScreening">
                 <h3>Dodaj seans</h3>
-                <p>Wybierz dzień i salę</p>
+                <p>Wybierz dzień, salę, film oraz godzinę rozpoczęcia filmu</p>
                 <div className={"dayAndAuditorium"}>
                     <div className={"customPicker"}>
                 <DatePicker locale="pl" calendarStartDay={1} selected={this.state.startDate}

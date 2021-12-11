@@ -26,10 +26,10 @@ function AddAuditorium(props) {
                 <div className="form-group">
                     <label>Liczba rzędów</label>
                     <input ref={rowsInput} type="text" name="name" className="form-control" aria-describedby="emailHelp"
-                           placeholder="rzędy" style={{width:"30%", margin: "0 auto"}}/>
+                           placeholder="rzędy" style={{width:"20%", margin: "0 auto"}}/>
                     <label>Miejsc w rzędzie</label>
                     <input ref={numbersInput} type="text" name="name" className="form-control" aria-describedby="emailHelp"
-                           placeholder="miejsca" style={{width:"30%", margin: "0 auto"}}/>
+                           placeholder="miejsca" style={{width:"20%", margin: "0 auto"}}/>
                 </div>
                 <button onClick={addAuditoriumRequest} type="submit" className="btn btn-primary" style={{margin: "4px"}}>Dodaj salę</button>
             </form>

@@ -28,11 +28,11 @@ export const login = (token)=>{
     notify();
 }
 
-export const isAdmin = () =>{
+export const isWorker = () =>{
     const token = localStorage.getItem('token');
     if (!token) return false;
     const decoded = jwt(token);
-    return decoded['roles'].includes("ROLE_admin");
+    return decoded['roles'].includes("ROLE_worker");
 }
 
 export const logout = ()=>{

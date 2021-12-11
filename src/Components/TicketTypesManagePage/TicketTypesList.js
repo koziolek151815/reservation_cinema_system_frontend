@@ -43,7 +43,7 @@ class TicketTypesList extends React.Component {
                         <tr>
                             <th>Indeks</th>
                             <th>Typ</th>
-                            <th>Cena</th>
+                            <th>Cena [zł]</th>
                             <th>Edytuj</th>
                         </tr>
                         </thead>

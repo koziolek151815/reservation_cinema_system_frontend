@@ -5,7 +5,7 @@ import {
     addOnChangeLoginListener,
     isLoggedIn,
     logout,
-    isAdmin
+    isWorker
 } from "../../Utility/Authorization";
 
 class Header extends React.Component  {
@@ -43,25 +43,25 @@ class Header extends React.Component  {
                         <Nav.Link href="/home">Strona główna</Nav.Link>
 
                         {
-                            isLoggedIn() && !isAdmin() ?
+                            isLoggedIn() && !isWorker() ?
                                 <Nav.Link href="/myReservationsHistory">Moje rezerwacje</Nav.Link> :
                                 null
 
                         }
                         {
-                            isLoggedIn() && isAdmin() ?
+                            isLoggedIn() && isWorker() ?
                                 <Nav.Link href="/movies">Filmy</Nav.Link> :
                                 null
 
                         }
                         {
-                            isLoggedIn() && isAdmin() ?
+                            isLoggedIn() && isWorker() ?
                                 <Nav.Link href="/auditoriums">Sale kinowe</Nav.Link> :
                                 null
 
                         }
                         {
-                            isLoggedIn() && isAdmin() ?
+                            isLoggedIn() && isWorker() ?
                                 <Nav.Link href="/ticketTypes">Rodzaje biletów</Nav.Link> :
                                 null
 

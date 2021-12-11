@@ -37,10 +37,10 @@ function UpdateTicketType(props) {
                 <div className="form-group">
                     <label>Nazwa typu biletu</label>
                     <input ref={nameInput} type="text" name="name" className="form-control" aria-describedby="emailHelp"
-                           placeholder="typ biletu" style={{width:"30%", margin: "0 auto"}}/>
-                    <label>Cena</label>
+                           placeholder="typ biletu" style={{width:"20%", margin: "0 auto"}}/>
+                    <label>Cena [zł]</label>
                     <input ref={priceInput} type="text" name="name" className="form-control"
-                           aria-describedby="emailHelp" style={{width:"30%", margin: "0 auto"}}
+                           aria-describedby="emailHelp" style={{width:"20%", margin: "0 auto"}}
                            placeholder="cena"/>
                 </div>
                 <button onClick={updateTicketTypeRequest} type="submit" className="btn btn-primary">Zatwierdź</button>

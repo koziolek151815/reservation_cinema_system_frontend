@@ -132,7 +132,7 @@ class ReservationsForScreeningTable extends React.Component {
                                 <td>{reservation.userEmail}</td>
                                 <td>{reservation.tickets.map((ticket) => <p>Rząd {ticket.row},
                                     Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
-                                <td>{reservation.price}</td>
+                                <td>{reservation.price.toFixed(2)}</td>
                                 <td>{reservation.paid === true ? "Tak" :
                                     <button className="btn btn-default bg-success"
                                             onClick={() => this.showPayModal(reservation.reservationId)}>Opłać
