@@ -3,6 +3,7 @@ import axios from "axios";
 import {Table} from "react-bootstrap";
 import {formatDate} from "../../Utility/Date";
 import DeleteConfirmation from "../../Utility/DeleteConfirmation";
+import Button from "react-bootstrap/cjs/Button";
 
 
 class ReservationsHistoryTable extends React.Component {
@@ -92,9 +93,9 @@ class ReservationsHistoryTable extends React.Component {
                                 <td>{reservation.price}</td>
                                 <td>{reservation.paid === true ? "Tak" : "Nie"}</td>
                                 <td>{reservation.paid === true ? "Niemozliwe" :
-                                    <button className="btn btn-default bg-danger"
+                                    <Button variant="danger"
                                             onClick={() => this.showDeleteModal(reservation.reservationId)}>Odwołaj
-                                    </button>}</td>
+                                    </Button>}</td>
                             </tr>
                         ))}
                         </tbody>

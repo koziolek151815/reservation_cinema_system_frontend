@@ -24,10 +24,10 @@ function AddTicketType(props) {
             <form>
                 <div className="form-group addTicketType">
                     <label>Typ biletu</label>
-                    <input ref={nameInput} type="text" name="name" className="form-control" aria-describedby="emailHelp"
+                    <input ref={nameInput} type="text" name="name" className="form-control"
                            placeholder="typ biletu" id={"ticketType"}/>
                     <label>Cena [zł]</label>
-                    <input ref={priceInput} type="text" name="name" className="form-control" aria-describedby="emailHelp"
+                    <input ref={priceInput} type="text" name="name" className="form-control"
                            placeholder="cena" id={"price"}/>
                 </div>
                 <button onClick={addTicketTypeRequest} type="submit" className="btn btn-primary submit">Dodaj</button>

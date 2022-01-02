@@ -186,6 +186,7 @@ function TicketSelectionPage(props) {
                 {numberAndTypesTicketsSelected &&
                 <div>
                     <h3>Wybierz teraz miejsca - {ticketsToSelectNumber}</h3>
+                    <h6>Cena: {totalPrice.toFixed(2)} zł</h6>
                     <div>
                         {rows.map((row, index) =>
                             <Seat num={numbers} ind={index} key={index} checkIfTaken={checkIfTaken}
@@ -193,9 +194,9 @@ function TicketSelectionPage(props) {
                                   bookedTickets={bookedTickets}/>
                         )}
                     </div>
-                    {selectedSeats.map((seat, index) => <p>
+                    {selectedSeats.map((seat, index) => <h6>
                         Wybrałeś miejsce: rząd {seat.row}, miejsce: {seat.number}
-                    </p>)
+                    </h6>)
                     }
                     <button onClick={bookTicketRequest} className="btn btn-primary m-2">Zarezerwuj bilety</button>
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

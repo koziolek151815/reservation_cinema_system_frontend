@@ -4,6 +4,7 @@ import {Table} from "react-bootstrap";
 import {formatDate} from "../../Utility/Date";
 import DeleteConfirmation from "../../Utility/DeleteConfirmation";
 import PayConfirmation from "../../Utility/PayConfirmation";
+import Button from "react-bootstrap/cjs/Button";
 
 
 class ReservationsForScreeningTable extends React.Component {
@@ -120,7 +121,7 @@ class ReservationsForScreeningTable extends React.Component {
                             <th>Indeks</th>
                             <th>Użytkownik</th>
                             <th>Bilety</th>
-                            <th>Cena[zł]</th>
+                            <th>Cena [zł]</th>
                             <th>Opłacone</th>
                             <th>Odwołanie</th>
                         </tr>
@@ -134,13 +135,13 @@ class ReservationsForScreeningTable extends React.Component {
                                     Miejsce {ticket.number}, {ticket.ticketTypeName}</p>)}</td>
                                 <td>{reservation.price.toFixed(2)}</td>
                                 <td>{reservation.paid === true ? "Tak" :
-                                    <button className="btn btn-default bg-success"
+                                    <Button variant="success"
                                             onClick={() => this.showPayModal(reservation.reservationId)}>Opłać
-                                    </button>}</td>
+                                    </Button>}</td>
                                 <td>{reservation.paid === true ? "Niemożliwe" :
-                                    <button className="btn btn-default bg-danger"
+                                    <Button variant="danger"
                                             onClick={() => this.showDeleteModal(reservation.reservationId)}>Odwołaj
-                                    </button>}</td>
+                                    </Button>}</td>
                             </tr>
                         ))}
                         </tbody>
